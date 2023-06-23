@@ -1,13 +1,15 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { Container } from './style';
+
+import { Container,Btn ,ButtonText} from './style';
 
 
 const BotaoVerde = () => {    
     
     return (
         <Container>
-            <Text>Botão Verde</Text>
+        <Btn>
+            <ButtonText>Confirmar</ButtonText>
+        </Btn>
         </Container>
     )
 }
