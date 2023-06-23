@@ -2,13 +2,16 @@ import React from 'react';
 
 import { Container,Btn ,ButtonText} from './style';
 
-
-const BotaoVerde = () => {    
+interface BotaoVerdeProps {
+    textoBotao: string;
+  }
+  
+const BotaoVerde: React.FC<BotaoVerdeProps> = ({ textoBotao }) => {
     
     return (
         <Container>
         <Btn>
-            <ButtonText>Confirmar</ButtonText>
+            <ButtonText>{textoBotao}</ButtonText>
         </Btn>
         </Container>
     )
@@ -16,3 +19,4 @@ const BotaoVerde = () => {
 
 
 export default BotaoVerde;
+

@@ -1,15 +1,16 @@
 import styled from "styled-components/native"
 
 export const Container = styled.View<{ inputWidthPercent: number }>`
-  height: auto;
+  height: 20%;
   width: ${(props) => props.inputWidthPercent || 30}%;
   background-color: #fff;
   align-items: center;
   justify-content: center;
   border-color: #073528;
   border-width: 1px;
-  border-radius: 5px;
+  border-radius: 25px;
   padding: 3px;
+ 
 `;
 
 export const TxtWhite = styled.Text`
@@ -38,4 +39,5 @@ export const ViewInputModal = styled.View`
   width: 100%;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  
 `
