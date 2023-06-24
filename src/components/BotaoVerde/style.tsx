@@ -9,7 +9,7 @@ border-radius: 10px;
 `;
 
 export const Btn = styled.TouchableOpacity`
-
+  
  
 `;
 
