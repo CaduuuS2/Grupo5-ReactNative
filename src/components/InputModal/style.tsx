@@ -8,7 +8,7 @@ export const Container = styled.View<{ inputWidthPercent: number }>`
   justify-content: center;
   border-color: #073528;
   border-width: 1px;
-  border-radius: 25px;
+  border-radius: 20px;
   padding: 3px;
  
 `;
