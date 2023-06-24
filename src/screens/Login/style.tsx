@@ -10,7 +10,7 @@ export const Container = styled.View`
 export const StyledPhoto = styled.Image`
   width: 200px;
   height: 200px;
-  border-radius: 50%;
+  border-radius: 20px;
   object-fit: cover;
   
 `;
@@ -18,13 +18,17 @@ export const StyledPhoto = styled.Image`
 
 export const StyledText = styled.Text`
    font-Size : 20px;
-   font-weight: bold;
+  
 `;
 
 export const StyledDiv = styled.View`
-  align-items: start;
-  justify-content: start;
   text-align: start;
+
+`
+
+export const ContainerDiv = styled.View`
+  marginTop : 20px;
+  
 
 `
 

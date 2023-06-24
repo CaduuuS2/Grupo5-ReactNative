@@ -4,13 +4,14 @@ import { Container,Btn ,ButtonText} from './style';
 
 interface BotaoVerdeProps {
     textoBotao: string;
+    onPress: () => void;
   }
   
-const BotaoVerde: React.FC<BotaoVerdeProps> = ({ textoBotao }) => {
+const BotaoVerde: React.FC<BotaoVerdeProps> = ({ textoBotao, onPress}) => {
     
     return (
         <Container>
-        <Btn>
+        <Btn onPress={onPress}>
             <ButtonText>{textoBotao}</ButtonText>
         </Btn>
         </Container>
