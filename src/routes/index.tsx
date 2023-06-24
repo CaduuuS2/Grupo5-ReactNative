@@ -4,6 +4,7 @@ import Login from '../screens/Login';
 import Home from '../screens/Home';
 import Cadastro from '../screens/Cadastro';
 import Carrinho from '../screens/Carrinho';
+import MenuHamburguer from '../components/MenuHamburguer';
 
 const Stack = createNativeStackNavigator();
 export type StackParams = {
@@ -21,6 +22,7 @@ function AppRoutes() {
         <Stack.Screen name="Cadastro" component={Cadastro} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Carrinho" component={Carrinho} />
+        <Stack.Screen name="MenuHamburguer" component={MenuHamburguer} />
       </Stack.Navigator>
     </NavigationContainer>
   );
