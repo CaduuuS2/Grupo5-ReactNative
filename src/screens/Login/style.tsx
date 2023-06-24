@@ -26,3 +26,9 @@ export const StyledDiv = styled.View`
 
 `
 
+export const ContainerDiv = styled.View`
+  marginTop : 20px;
+  
+
+`
+

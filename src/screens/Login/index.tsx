@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { Text, TouchableOpacity, Image, View } from "react-native";
-import { Container, StyledPhoto, StyledText, StyledDiv } from "./style";
+import {
+  Container,
+  StyledPhoto,
+  StyledText,
+  StyledDiv,
+  ContainerDiv,
+} from "./style";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParams } from "../../routes";
 import { useNavigation } from "@react-navigation/native";
@@ -29,20 +35,31 @@ const Login = () => {
             placeholder={"Entre com o username:"}
             onChangeText={setName}
             keyboardType="default"
-            inputWidth={80}
+            inputWidth={100}
           />
           <StyledDiv>
-              <StyledText> Senha </StyledText>
+            <StyledText> Senha </StyledText>
           </StyledDiv>
           <InputModal
             value={senha}
             placeholder={"Entre com o username:"}
             onChangeText={setSenha}
             keyboardType="default"
-            inputWidth={80}
+            inputWidth={100}
           />
         </Container>
-           <BotaoVerde textoBotao="Entrar" onPress={() => navigation.navigate('Home')}/>
+        <ContainerDiv>
+          <BotaoVerde
+            textoBotao="Entrar"
+            onPress={() => navigation.navigate("Home")}
+          />
+        </ContainerDiv>
+        <ContainerDiv>
+          <BotaoVerde
+            textoBotao="Cadastrar"
+            onPress={() => navigation.navigate("Cadastro")}
+          />
+        </ContainerDiv>
       </Container>
     </Fundo>
   );
