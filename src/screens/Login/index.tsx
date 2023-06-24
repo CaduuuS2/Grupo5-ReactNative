@@ -43,7 +43,9 @@ const Login = () => {
             inputWidth={80}
           />
         </Container>
-        <BotaoVerde textoBotao="Entrar"/>
+        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+          <Text >Entrar </Text>
+          </TouchableOpacity> 
       </Container>
     </Fundo>
   );
