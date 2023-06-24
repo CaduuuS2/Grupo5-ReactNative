@@ -29,16 +29,18 @@ const Login = () => {
             placeholder={"Entre com o username:"}
             onChangeText={setName}
             keyboardType="default"
-            inputWidth={170}
+            inputWidth={80}
             
           />
-          <StyledText> Senha </StyledText>
+          <StyledDiv>
+              <StyledText> Senha </StyledText>
+          </StyledDiv>
           <InputModal
             value={senha}
-            placeholder={"Entre com a senha:"}
+            placeholder={"Entre com o username:"}
             onChangeText={setSenha}
             keyboardType="default"
-            inputWidth={170}
+            inputWidth={80}
           />
         </Container>
         <BotaoVerde textoBotao="Entrar"/>
