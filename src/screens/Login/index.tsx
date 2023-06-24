@@ -30,7 +30,6 @@ const Login = () => {
             onChangeText={setName}
             keyboardType="default"
             inputWidth={80}
-            
           />
           <StyledDiv>
               <StyledText> Senha </StyledText>
@@ -43,9 +42,7 @@ const Login = () => {
             inputWidth={80}
           />
         </Container>
-        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-          <Text >Entrar </Text>
-          </TouchableOpacity> 
+           <BotaoVerde textoBotao="Entrar" onPress={() => navigation.navigate('Home')}/>
       </Container>
     </Fundo>
   );
