@@ -4,10 +4,10 @@ import Login from '../screens/Login';
 import Home from '../screens/Home';
 import Cadastro from '../screens/Cadastro';
 import Carrinho from '../screens/Carrinho';
+import MenuHamburguer from '../components/MenuHamburguer';
 import BotaoVerde from '../components/BotaoVerde';
 import Cabecalho from '../components/Cabecalho';
 // import DrawerRoutes from './drawer.routes';
-
 
 const Stack = createNativeStackNavigator();
 export type StackParams = {
@@ -36,6 +36,7 @@ function AppRoutes() {
         }}/>
         <Stack.Screen name="Login" component={Login} options={{headerShown: false}} />
         <Stack.Screen name="Carrinho" component={Carrinho} />
+        <Stack.Screen name="MenuHamburguer" component={MenuHamburguer} />
         {/* <Stack.Screen name="Drawer" component={DrawerRoutes} /> */}
       </Stack.Navigator>
     </NavigationContainer>
