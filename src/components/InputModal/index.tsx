@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { KeyboardTypeOptions, Modal, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { Container, TxtBlack, TxtWhite, ViewInputModal, ModalBackground, TxtInputWhite } from './style';
+import { Container, TxtBlack, TxtGray, ViewInputModal, ModalBackground, TxtInputWhite, BtnInput } from './style';
 
 type Types = {
     value: string;
@@ -21,11 +21,12 @@ const InputModal = (props: Types) => {
 
     return (
         <Container inputWidthPercent={props.inputWidth}>
-            <TouchableOpacity
+            <BtnInput
+                inputWidthPercent={props.inputWidth}                
                 activeOpacity={1}
                 onPress={() => setModalVisibility(true)}>
                 {props.value === ''
-                    ? (<TxtWhite>{props.placeholder}</TxtWhite>)
+                    ? (<TxtGray>{props.placeholder}</TxtGray>)
                     : (<TxtBlack>{props.value}</TxtBlack>)
                 }
                 <Modal
@@ -39,6 +40,7 @@ const InputModal = (props: Types) => {
                             <View>
                                 <TxtInputWhite
                                     {...props}
+                                    placeholderTextColor={'#6d6d6d'}
                                     onSubmitEditing={() => setModalVisibility(false)}
                                     onBlur={() => setModalVisibility(false)}
                                     ref={inputRef} />
@@ -46,7 +48,7 @@ const InputModal = (props: Types) => {
                         </ViewInputModal>
                     </ModalBackground>
                 </Modal>
-            </TouchableOpacity>
+            </BtnInput>
 
         </Container>
     )
