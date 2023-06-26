@@ -8,6 +8,7 @@ type Types = {
     onChangeText?: Dispatch<SetStateAction<string>>;
     keyboardType: KeyboardTypeOptions | undefined;
     inputWidth: number;
+    secureTextEntry?: boolean;
 }
 
 const InputModal = (props: Types) => {
@@ -18,6 +19,17 @@ const InputModal = (props: Types) => {
     function setFocus() {
         setTimeout(() => inputRef.current?.focus(), 50)
     }
+    
+    function valueHidable() {
+        if (props.secureTextEntry){
+            let hide = ""
+            for (let i = 0; i < props.value.length; i ++) {
+                hide += "*"
+            }
+            return hide
+        }
+        return props.value
+    }
 
     return (
         <Container inputWidthPercent={props.inputWidth}>
@@ -27,7 +39,7 @@ const InputModal = (props: Types) => {
                 onPress={() => setModalVisibility(true)}>
                 {props.value === ''
                     ? (<TxtGray>{props.placeholder}</TxtGray>)
-                    : (<TxtBlack>{props.value}</TxtBlack>)
+                    : (<TxtBlack>{valueHidable()}</TxtBlack>)
                 }
                 <Modal
                     visible={modalVisibility}
