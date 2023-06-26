@@ -48,3 +48,10 @@ margin: 15px;
 `
 export const BotaoTipoPagamento = styled.TouchableOpacity`
 margin: 10px;`
+
+export const ProdutoView = styled.View`
+flex-direction: column;
+justifyContent: space-between;
+alignItems: center;
+margin: 15px;
+`
