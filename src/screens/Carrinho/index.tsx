@@ -13,17 +13,12 @@ interface itemCarrinho {
     quantidadeCarrinho: number;
     valorUnitario: number;
     url: string;
-} interface quantidadeItemCarrinhoObjeto {
-    produtoId: number;
-    quantidadeContador: number;
 }
-
 
 const Carrinho = () => {
     const [valorFrete, setValorFrete] = useState<string>() //Não formatado
     const [valorTotal, setValorTotal] = useState<string>() //Formatado
     const [itensCarrinho, setItensCarrinho] = useState<itemCarrinho[]>()
-    const [quantidadeItemCarrinhoArray, setQuantidadeItemCarrinhoArray] = useState<quantidadeItemCarrinhoObjeto[]>()
     const [cepFormatado, setCepFormatado] = useState<string>()
     let cep: number = 95725029
     let frete: number
@@ -40,35 +35,35 @@ const Carrinho = () => {
         quantidadeCarrinho: 3,
         valorUnitario: 12.99,
         url: 'https://exemplo.com/rosavermelha.jpg',
-      };
-      
-      let flor2 = {
+    };
+
+    let flor2 = {
         produtoId: 2,
         nome: 'Lírio Branco',
         quantidadeCarrinho: 2,
         valorUnitario: 9.99,
         url: 'https://exemplo.com/liriobranco.jpg',
-      };
-      
-      let flor3 = {
+    };
+
+    let flor3 = {
         produtoId: 3,
         nome: 'Orquídea Azul',
         quantidadeCarrinho: 1,
         valorUnitario: 19.99,
         url: 'https://exemplo.com/orquideaazul.jpg',
-      };
+    };
 
     const IconeSvgPix = `
   <svg xmlns="'../../../assets/icone/pix.svg'" width="50" height="50" viewBox="0 0 100 100">
   <circle cx="50" cy="50" r="40" fill="black" />
   </svg>
   `;
-  
-  const formatarValor = (valor: number) => {
-      const valorFormatado = Number(valor.toFixed(2));
-      return valorFormatado.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+    const formatarValor = (valor: number) => {
+        const valorFormatado = Number(valor.toFixed(2));
+        return valorFormatado.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     }
-    
+
     const formatarCep = (cep: number) => {
         const cepString: string = cep.toString()
         const cepFormatado = cepString.slice(0, 5) + '-' + cepString.slice(5)
@@ -117,22 +112,25 @@ const Carrinho = () => {
     const quantidadeItemCarrinhoContador = (itemFunction: itemCarrinho, parametro: number) => {
         if (parametro === 1 || parametro === -1) {
             if (itensCarrinho !== undefined) {
-                setItensCarrinho(itensCarrinho.map((itemMap) => {
-                    if (itemMap.produtoId === itemFunction.produtoId) {
-                        if(itemMap.quantidadeCarrinho > 1){
+                const MapItensCarrinho = itensCarrinho.map((itemMap) => {
+                     if (itemMap.produtoId === itemFunction.produtoId) {
+                        if (itemMap.quantidadeCarrinho > 1) {
                             let spreadItemMap: itemCarrinho = { ...itemMap }
                             spreadItemMap.quantidadeCarrinho = parametro + spreadItemMap.quantidadeCarrinho
-                            return spreadItemMap                   
-                        } else if (itemMap.quantidadeCarrinho === 1 && parametro === -1){
-                            return itemMap                   
-                        } else if (itemMap.quantidadeCarrinho === 1 && parametro === 1){
+                            return spreadItemMap
+                        } else if (itemMap.quantidadeCarrinho === 1 && parametro === -1) {
+                            return itemMap
+                        } else if (itemMap.quantidadeCarrinho === 1 && parametro === 1) {
                             let spreadItemMap: itemCarrinho = { ...itemMap }
                             spreadItemMap.quantidadeCarrinho = parametro + spreadItemMap.quantidadeCarrinho
-                            return spreadItemMap                   
+                            return spreadItemMap
                         }
                         return itemMap
-                }
-                return itemMap}))
+                    }
+                    return itemMap
+                })
+                setItensCarrinho(MapItensCarrinho)
+                calculoValorTotal(MapItensCarrinho)
             } else {
                 console.log("Error: The array quantidadeItemCarrinhoArray is undefined. Please try again.")
                 return
@@ -187,21 +185,21 @@ const Carrinho = () => {
     return (
         <Fundo colors={["#BD6F29", "#ffffff"]} start={[1, 0]} end={[0, 1]}>
             <Container>
-                {(itensCarrinho !== undefined) ?  
-                <>{
-                itensCarrinho.map((itemMap) =>
-                <ProdutoView key={itemMap.produtoId}>
-                <TextoPadrao>{itemMap.nome}</TextoPadrao>
-                <TextoPadrao>{itemMap.quantidadeCarrinho}</TextoPadrao>
-                </ProdutoView>
-                )}
-                </> 
-                :
+                {(itensCarrinho !== undefined) ?
+                    <>{
+                        itensCarrinho.map((itemMap) =>
+                            <ProdutoView key={itemMap.produtoId}>
+                                <TextoPadrao>{itemMap.nome}</TextoPadrao>
+                                <TextoPadrao>{itemMap.quantidadeCarrinho}</TextoPadrao>
+                            </ProdutoView>
+                        )}
+                    </>
+                    :
                     <AvisoCarrinho>
                         <TextoPadrao>Seu carrinho está vazio, visite nossa página principal e escolha um produto de sua preferência ;)</TextoPadrao>
                     </AvisoCarrinho>
                 }
-                    <TextoFormaPagamentoView>
+                <TextoFormaPagamentoView>
                     <CepView>
                         <TextoPadrao>CEP: {cepFormatado}</TextoPadrao>
                     </CepView>
@@ -211,43 +209,43 @@ const Carrinho = () => {
                     <ValorTotalView>
                         <TextoPadrao>Valor Total: {valorTotal}</TextoPadrao>
                     </ValorTotalView>
-                    </TextoFormaPagamentoView>
+                </TextoFormaPagamentoView>
                 <FormaDePagamentoView>
-                        <BotaoTipoPagamento>
-                            <AntDesign name="qrcode" size={50} color="black" />
-                        </BotaoTipoPagamento>
-                        <BotaoTipoPagamento>
-                            <AntDesign name="barcode" size={50} color="black" />
-                        </BotaoTipoPagamento>
+                    <BotaoTipoPagamento>
+                        <AntDesign name="qrcode" size={50} color="black" />
+                    </BotaoTipoPagamento>
+                    <BotaoTipoPagamento>
+                        <AntDesign name="barcode" size={50} color="black" />
+                    </BotaoTipoPagamento>
                 </FormaDePagamentoView>
                 <BotaoVerdeView>
                     <BotaoVerde
                         textoBotao="Confirmar"
-                        onPress={() => {setItensCarrinho([]); navigation.navigate("Home")}}
+                        onPress={() => { setItensCarrinho([]); navigation.navigate("Home") }}
                     />
                 </BotaoVerdeView>
                 <BotaoVerdeView>
                     <BotaoVerde
                         textoBotao="Confirmar"
-                        onPress={() => {adicionarItemCarrinho(flor1)}}
+                        onPress={() => { adicionarItemCarrinho(flor1) }}
                     />
                 </BotaoVerdeView>
                 <BotaoVerdeView>
                     <BotaoVerde
                         textoBotao="Confirmar"
-                        onPress={() => {adicionarItemCarrinho(flor2)}}
+                        onPress={() => { adicionarItemCarrinho(flor2) }}
                     />
                 </BotaoVerdeView>
                 <BotaoVerdeView>
                     <BotaoVerde
                         textoBotao="Confirmar"
-                        onPress={() => {quantidadeItemCarrinhoContador(flor1, 1)}}
-                    /> 
+                        onPress={() => { quantidadeItemCarrinhoContador(flor1, 1) }}
+                    />
                 </BotaoVerdeView>
                 <BotaoVerdeView>
                     <BotaoVerde
                         textoBotao="Confirmar"
-                        onPress={() => {quantidadeItemCarrinhoContador(flor2, -1)}}
+                        onPress={() => { quantidadeItemCarrinhoContador(flor2, -1) }}
                     />
                 </BotaoVerdeView>
             </Container>
