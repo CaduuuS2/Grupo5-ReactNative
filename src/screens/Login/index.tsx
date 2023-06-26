@@ -60,7 +60,7 @@ const Login = () => {
           
           />
           <TouchableOpacity  onPress={esconderSenha}>
-          <Feather name="eye-off" size={28} color="black" style={{ position: 'absolute', right: 10, bottom: 8}}/>
+          {showSenha ? (<Feather name="eye-off" size={28} color="black" style={{ position: 'absolute', right: 10 }} />) : (<Feather name="eye" size={28} color="black" style={{ position: 'absolute', right: 10 }} />)}
           </TouchableOpacity> 
         
           </StyledDiv>
