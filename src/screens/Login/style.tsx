@@ -23,7 +23,7 @@ export const StyledText = styled.Text`
 `;
 
 export const StyledDiv = styled.View`
- 
+    flex-direction: row;
 
 `
 
