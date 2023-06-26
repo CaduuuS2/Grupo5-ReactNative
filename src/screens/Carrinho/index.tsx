@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, BotaoVerdeView, TextoPadrao, CepView, ValorFreteView, ValorTotalView, FormaDePagamentoView, TextoFormaPagamentoView, AvisoCarrinho, BotaoTipoPagamento } from './style';
+import { Container, ProdutoView, BotaoVerdeView, TextoPadrao, CepView, ValorFreteView, ValorTotalView, FormaDePagamentoView, TextoFormaPagamentoView, AvisoCarrinho, BotaoTipoPagamento } from './style';
 import { AntDesign } from '@expo/vector-icons';
 import BotaoVerde from '../../components/BotaoVerde';
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -116,15 +116,23 @@ const Carrinho = () => {
 
     const quantidadeItemCarrinhoContador = (itemFunction: itemCarrinho, parametro: number) => {
         if (parametro === 1 || parametro === -1) {
-            if (quantidadeItemCarrinhoArray !== undefined) {
-                setQuantidadeItemCarrinhoArray(quantidadeItemCarrinhoArray.map((itemMap) => {
+            if (itensCarrinho !== undefined) {
+                setItensCarrinho(itensCarrinho.map((itemMap) => {
                     if (itemMap.produtoId === itemFunction.produtoId) {
-                        let spreadItemMap: quantidadeItemCarrinhoObjeto = { ...itemMap }
-                        spreadItemMap.quantidadeContador += parametro
-                        return spreadItemMap
-                    }
-                    return itemMap
-                }))
+                        if(itemMap.quantidadeCarrinho > 1){
+                            let spreadItemMap: itemCarrinho = { ...itemMap }
+                            spreadItemMap.quantidadeCarrinho = parametro + spreadItemMap.quantidadeCarrinho
+                            return spreadItemMap                   
+                        } else if (itemMap.quantidadeCarrinho === 1 && parametro === -1){
+                            return itemMap                   
+                        } else if (itemMap.quantidadeCarrinho === 1 && parametro === 1){
+                            let spreadItemMap: itemCarrinho = { ...itemMap }
+                            spreadItemMap.quantidadeCarrinho = parametro + spreadItemMap.quantidadeCarrinho
+                            return spreadItemMap                   
+                        }
+                        return itemMap
+                }
+                return itemMap}))
             } else {
                 console.log("Error: The array quantidadeItemCarrinhoArray is undefined. Please try again.")
                 return
@@ -151,7 +159,7 @@ const Carrinho = () => {
         const itemCarrinho = {
             produtoId: itemFunction.produtoId,
             nome: itemFunction.nome,
-            quantidadeCarrinho: 1,
+            quantidadeCarrinho: 3,
             valorUnitario: itemFunction.valorUnitario,
             url: itemFunction.url,
         }
@@ -174,13 +182,21 @@ const Carrinho = () => {
             setItensCarrinho([itemCarrinho])
             calculoValorTotal([itemCarrinho])
         }
-
     }
 
     return (
         <Fundo colors={["#BD6F29", "#ffffff"]} start={[1, 0]} end={[0, 1]}>
             <Container>
-                {(itensCarrinho !== undefined) ?  :
+                {(itensCarrinho !== undefined) ?  
+                <>{
+                itensCarrinho.map((itemMap) =>
+                <ProdutoView key={itemMap.produtoId}>
+                <TextoPadrao>{itemMap.nome}</TextoPadrao>
+                <TextoPadrao>{itemMap.quantidadeCarrinho}</TextoPadrao>
+                </ProdutoView>
+                )}
+                </> 
+                :
                     <AvisoCarrinho>
                         <TextoPadrao>Seu carrinho está vazio, visite nossa página principal e escolha um produto de sua preferência ;)</TextoPadrao>
                     </AvisoCarrinho>
@@ -219,13 +235,19 @@ const Carrinho = () => {
                 <BotaoVerdeView>
                     <BotaoVerde
                         textoBotao="Confirmar"
-                        onPress={() => {quantidadeItemCarrinhoContador(flor1, 1)}}
+                        onPress={() => {adicionarItemCarrinho(flor2)}}
                     />
                 </BotaoVerdeView>
                 <BotaoVerdeView>
                     <BotaoVerde
                         textoBotao="Confirmar"
-                        onPress={() => {quantidadeItemCarrinhoContador(flor1, -1)}}
+                        onPress={() => {quantidadeItemCarrinhoContador(flor1, 1)}}
+                    /> 
+                </BotaoVerdeView>
+                <BotaoVerdeView>
+                    <BotaoVerde
+                        textoBotao="Confirmar"
+                        onPress={() => {quantidadeItemCarrinhoContador(flor2, -1)}}
                     />
                 </BotaoVerdeView>
             </Container>
