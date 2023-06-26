@@ -1,6 +1,7 @@
 import styled from "styled-components/native"
 
 export const Container = styled.View`
+
 flex: 1;
 align-items: center;
 justify-content: flex-start;
@@ -47,4 +48,3 @@ margin: 15px;
 `
 export const BotaoTipoPagamento = styled.TouchableOpacity`
 margin: 10px;`
-

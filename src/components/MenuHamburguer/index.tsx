@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Text } from 'react-native';
 import { Container, StyledPhoto, ViewUser, ViewUsernameEmail, UserPhoto, ViewCategoria, TextCategoria, TextItens, BtnIconText } from './style';
 import { FontAwesome, Entypo, SimpleLineIcons, Ionicons } from '@expo/vector-icons';
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParams } from "../../routes";
 import { useNavigation } from "@react-navigation/native";
+import { filtrarProdutosPorCategoria } from '../../funcoes/funcoes';
+import { useProdutosContext } from '../../context/ProdutosProvider';
+import { produtosInit } from '../../data/produtos';
 
 
 const MenuHamburguer = () => {
 
     const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
+    
+    const { produtos, setProdutos } = useProdutosContext();
 
     return (
         <Container>
@@ -24,10 +29,29 @@ const MenuHamburguer = () => {
             </ViewUser>
 
             <ViewCategoria>
-                <TextCategoria style={{ color: "white" }}>Acervo:</TextCategoria>
-                <TextItens>História</TextItens>
-                <TextItens>Filosofia</TextItens>
-                <TextItens>Classicos da Antiguidade</TextItens>
+               <TextCategoria style={{ color: "white" }}>Acervo:</TextCategoria>
+                <BtnIconText onPress={() => {
+                    setProdutos(filtrarProdutosPorCategoria(produtosInit, 1))}
+                }>
+                    <TextItens>História</TextItens>
+                </BtnIconText>
+                <BtnIconText onPress={() => {
+                    setProdutos(filtrarProdutosPorCategoria(produtosInit, 2))}
+                }>
+                    <TextItens>Filosofia</TextItens>
+                </BtnIconText>
+                <BtnIconText onPress={() => {
+                    setProdutos(filtrarProdutosPorCategoria(produtosInit, 3))}
+                }>
+                    <TextItens>Classicos da Antiguidade</TextItens>
+                </BtnIconText>
+                <BtnIconText onPress={() => {
+                    setProdutos(produtosInit)}
+                }>
+                    <TextItens>Todas</TextItens>
+                </BtnIconText>
+
+
             </ViewCategoria>
             <ViewCategoria>
                 <TextCategoria style={{ color: "white" }}>Seções:</TextCategoria>
@@ -50,8 +74,15 @@ const MenuHamburguer = () => {
                     <SimpleLineIcons name="logout" size={24} color="white" />
                     <TextItens>Sair</TextItens>
                 </BtnIconText>
-
+                
+                {/* para testar produtos */}
+                {/* {produtos.map((produto: Produto) => <Text key={produto.id} style={{ fontSize: 10, color: 'white'}}>{produto.categoria}</Text>) } */}
+                
             </ViewCategoria>
+            
+            
+           
+
         </Container>
     )
 }

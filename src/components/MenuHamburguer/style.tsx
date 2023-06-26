@@ -10,11 +10,12 @@ export const Container = styled.View`
 `
 
 export const StyledPhoto = styled.Image`
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   border-radius: 75px;
   object-fit: cover;
-`;
+  margin-top: 20px;
+`
 
 export const ViewUser = styled.View`
   height: 10%;
@@ -53,11 +54,12 @@ export const TextCategoria = styled.Text`
 `
 
 export const TextItens = styled(TextCategoria)`
-  
+`
+
+export const TextMargin = styled(TextCategoria)`
 `
 
 export const BtnIconText = styled.TouchableOpacity`
   flex-direction: row;
-  margin: 3px;
   margin-left: 20px;
 `
