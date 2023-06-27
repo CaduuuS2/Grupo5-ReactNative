@@ -9,12 +9,15 @@ import { Container, StyledInput } from './style';
 
     
 const Cabecalho = ( )  => {
+    const [pesquisa, setPesquisa] = useState("");
     return (
         <Container>
              <StatusBar  />
             <StyledInput
-                placeholder='Pesquise aqui'
-               
+                value={pesquisa}
+                placeholder={"Pesquise aqui"}
+                onChangeText={setPesquisa}
+                keyboardType="default"
             />
         </Container>
     )
