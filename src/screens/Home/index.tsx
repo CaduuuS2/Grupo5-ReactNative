@@ -17,8 +17,17 @@ const Home = () => {
     )
   }
 
+  
+
   const [modalVisible, setModalVisible] = useState(false);
 
+  navigation.setOptions({headerLeft : () => (
+    <View style={{ marginLeft: 0 }}>
+      <Entypo name="menu" size={24} color="white" onPress={
+        () => {setModalVisible(true)}
+      }/>
+    </View>
+  ),})
   
 
   return (
@@ -28,9 +37,6 @@ const Home = () => {
           
           <ModalHamburguer modalVisibility={ modalVisible } setModalVisibility={ setModalVisible }/>
 
-          <View>
-            <Entypo name="menu" size={24} color="black" onPress={() => setModalVisible(!modalVisible)} />
-          </View>
 
               <BlocoSlides>
                 <Carrossel autoplay={true} autoplayTimeout={5} showsButtons={true}>
