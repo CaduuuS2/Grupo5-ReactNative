@@ -69,3 +69,16 @@ width: 67.5%;
 flex-direction: column;
 justify-content center;
 `;
+
+export const VisorContador = styled.View`
+background-color: #ffffff;
+width: 45%;
+align-items: center;
+height: 100%;
+`;
+
+export const TextoContador = styled.Text`
+font-size: 20px;
+font-weight: bold;
+color: #000000;
+`;
