@@ -1,13 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Login from '../screens/Login';
 import Home from '../screens/Home';
-import Cadastro from '../screens/Cadastro';
 import Carrinho from '../screens/Carrinho';
 import MenuHamburguer from '../components/MenuHamburguer';
-import BotaoVerde from '../components/BotaoVerde';
 import Cabecalho from '../components/Cabecalho';
-// import DrawerRoutes from './drawer.routes';
+import { Entypo } from '@expo/vector-icons';
+import { View } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 export type StackParams = {
@@ -15,8 +13,6 @@ export type StackParams = {
     Cadastro: any;
     Carrinho: any;
     Login: any;
-    Drawer : any;
-
 }
 function RotasPrivadas() {
   return (
@@ -27,23 +23,16 @@ function RotasPrivadas() {
             backgroundColor: '#073528'
            },
            headerTintColor: '#fff',
-           headerTitleAlign: 'center'
+           headerTitleAlign: 'center',
+           headerLeft: () => (
+            <View style={{ marginLeft: 0 }}>
+              <Entypo name="menu" size={24} color="white" onPress={
+                () => {}
+              }/>
+            </View>
+          )
            }} />
-        {/* <Stack.Screen name="Cadastro" component={Cadastro} options={{title: 'Cadastro',
-          headerStyle: {
-            backgroundColor: '#073528'
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-            fontSize: 30,
-          },
-         
-        }}/> */}                
-        {/* <Stack.Screen name="Login" component={Login} options={{headerShown: false}} /> */}
         <Stack.Screen name="Carrinho" component={Carrinho} />
-        <Stack.Screen name="MenuHamburguer" component={MenuHamburguer} />
-        {/* <Stack.Screen name="Drawer" component={DrawerRoutes} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

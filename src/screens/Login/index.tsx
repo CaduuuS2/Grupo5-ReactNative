@@ -9,7 +9,7 @@ import {
   
 } from "./style";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { StackParams } from "../../routes";
+import { StackParams } from "../../routes/rotasPrivadas";
 import { useNavigation } from "@react-navigation/native";
 import Fundo from "../../components/Fundo";
 import InputModal from "../../components/InputModal";
@@ -40,9 +40,6 @@ const Login = () => {
   const {login} = useAuth();
   const {handleSubmit, control} = useForm<FieldValues>();
   const {navigate} = useNavigation<ScreenNavigationProp>();
-  // const handleEntrar = () => {
-  //   navigation.navigate('Home')
-  // }
   const esconderSenha = () => {
     setShowSenha(!showSenha);
   };

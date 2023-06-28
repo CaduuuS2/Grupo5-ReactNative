@@ -1,26 +1,36 @@
-import React from 'react';
-import { ScrollView, Text, View} from 'react-native';
+import React, { useState } from 'react';
+import { ScrollView, Text, View } from 'react-native';
 import { Container, Textos, BlocoConteudos, BlocoImagem, Item, IconeImg, Carrossel, Slide, SlideImagens, BlocoSlides, BlocoBotoes, Botoes, BlocoTextos, Topo, ConteudoPrincipal, Blocotopo } from './style';
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { StackParams } from "../../routes";
 import { useNavigation } from "@react-navigation/native";
-import { SlideFromRightIOS } from '@react-navigation/stack/lib/typescript/src/TransitionConfigs/TransitionPresets';
-import Swiper from 'react-native-swiper'
-import { MaterialIcons, AntDesign  } from '@expo/vector-icons'; 
+import { MaterialIcons, AntDesign, Entypo } from '@expo/vector-icons';
+import { StackParams } from '../../routes/rotasPrivadas';
+import ModalHamburguer from '../../components/ModalHamburguer';
 
 const Home = () => {
-  
-  const navigation = useNavigation < NativeStackNavigationProp<StackParams>> ();
-    const handleCarrinho = () => {
-      return (
-        navigation.navigate('Carrinho')
-      )
-    }
+
+  const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
+
+  const handleCarrinho = () => {
     return (
-        <Container>
-          <ScrollView>
-            <Topo>
-              
+      navigation.navigate('Carrinho')
+    )
+  }
+
+  const [modalVisible, setModalVisible] = useState(false);
+
+  
+
+  return (
+    <Container>
+      <ScrollView>
+        <Topo>
+          
+          <ModalHamburguer modalVisibility={ modalVisible } setModalVisibility={ setModalVisible }/>
+
+          <View>
+            <Entypo name="menu" size={24} color="black" onPress={() => setModalVisible(!modalVisible)} />
+          </View>
 
               <BlocoSlides>
                 <Carrossel autoplay={true} autoplayTimeout={5} showsButtons={true}>
