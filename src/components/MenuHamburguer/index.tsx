@@ -3,18 +3,24 @@ import { Text } from 'react-native';
 import { Container, StyledPhoto, ViewUser, ViewUsernameEmail, UserPhoto, ViewCategoria, TextCategoria, TextItens, BtnIconText } from './style';
 import { FontAwesome, Entypo, SimpleLineIcons, Ionicons } from '@expo/vector-icons';
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { StackParams } from "../../routes";
+import { StackParams } from '../../routes/rotasPrivadas';
 import { useNavigation } from "@react-navigation/native";
 import { filtrarProdutosPorCategoria } from '../../funcoes/funcoes';
 import { useProdutosContext } from '../../context/ProdutosProvider';
 import { produtosInit } from '../../data/produtos';
+import { AuthContext } from '../../context/authContext';
 
+interface MenuHamburguerProps {
+    modalVisibility: boolean;
+    setModalVisibility: (visible: boolean) => void;
+  }
 
-const MenuHamburguer = () => {
+const MenuHamburguer: React.FC<MenuHamburguerProps> = ({ modalVisibility, setModalVisibility }) => {
 
     const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
-    
+
     const { produtos, setProdutos } = useProdutosContext();
+    const { logout } = useContext(AuthContext)
 
     return (
         <Container>
@@ -29,24 +35,28 @@ const MenuHamburguer = () => {
             </ViewUser>
 
             <ViewCategoria>
-               <TextCategoria style={{ color: "white" }}>Acervo:</TextCategoria>
+                <TextCategoria style={{ color: "white" }}>Acervo:</TextCategoria>
                 <BtnIconText onPress={() => {
-                    setProdutos(filtrarProdutosPorCategoria(produtosInit, 1))}
+                    setProdutos(filtrarProdutosPorCategoria(produtosInit, 1))
+                }
                 }>
                     <TextItens>História</TextItens>
                 </BtnIconText>
                 <BtnIconText onPress={() => {
-                    setProdutos(filtrarProdutosPorCategoria(produtosInit, 2))}
+                    setProdutos(filtrarProdutosPorCategoria(produtosInit, 2))
+                }
                 }>
                     <TextItens>Filosofia</TextItens>
                 </BtnIconText>
                 <BtnIconText onPress={() => {
-                    setProdutos(filtrarProdutosPorCategoria(produtosInit, 3))}
+                    setProdutos(filtrarProdutosPorCategoria(produtosInit, 3))
+                }
                 }>
                     <TextItens>Classicos da Antiguidade</TextItens>
                 </BtnIconText>
                 <BtnIconText onPress={() => {
-                    setProdutos(produtosInit)}
+                    setProdutos(produtosInit)
+                }
                 }>
                     <TextItens>Todas</TextItens>
                 </BtnIconText>
@@ -55,7 +65,7 @@ const MenuHamburguer = () => {
             </ViewCategoria>
             <ViewCategoria>
                 <TextCategoria style={{ color: "white" }}>Seções:</TextCategoria>
-                <BtnIconText onPress={() => navigation.navigate('Home')}>
+                <BtnIconText onPress={() => setModalVisibility(false)}>
                     <FontAwesome name="home" size={24} color="white" />
                     <TextItens>Home</TextItens>
                 </BtnIconText>
@@ -65,23 +75,20 @@ const MenuHamburguer = () => {
                     <TextItens>Carrinho</TextItens>
                 </BtnIconText>
 
-                <BtnIconText onPress={() => navigation.navigate('Cadastro')}>
-                <Ionicons name="enter" size={24} color="white" />
-                    <TextItens>Cadastro</TextItens>
-                </BtnIconText>
-
-                <BtnIconText onPress={() => navigation.navigate('Login')}>
+                <BtnIconText onPress={() => {
+                    logout()
+                }}>
                     <SimpleLineIcons name="logout" size={24} color="white" />
                     <TextItens>Sair</TextItens>
                 </BtnIconText>
-                
+
                 {/* para testar produtos */}
                 {/* {produtos.map((produto: Produto) => <Text key={produto.id} style={{ fontSize: 10, color: 'white'}}>{produto.categoria}</Text>) } */}
-                
+
             </ViewCategoria>
-            
-            
-           
+
+
+
 
         </Container>
     )
