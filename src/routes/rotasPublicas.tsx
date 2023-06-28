@@ -18,17 +18,17 @@ export type StackParams = {
     Drawer : any;
 
 }
-function Rotas() {
+function RotasPublicas() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login"  >
-        <Stack.Screen name="Home" component={Home} options={{ headerTitle: () => <Cabecalho/>,
+        {/* <Stack.Screen name="Home" component={Home} options={{ headerTitle: () => <Cabecalho/>,
           headerStyle: {
             backgroundColor: '#073528'
            },
            headerTintColor: '#fff',
            headerTitleAlign: 'center'
-           }} />
+           }} /> */}
         <Stack.Screen name="Cadastro" component={Cadastro} options={{title: 'Cadastro',
           headerStyle: {
             backgroundColor: '#073528'
@@ -41,12 +41,12 @@ function Rotas() {
          
         }}/>
         <Stack.Screen name="Login" component={Login} options={{headerShown: false}} />
-        <Stack.Screen name="Carrinho" component={Carrinho} />
-        <Stack.Screen name="MenuHamburguer" component={MenuHamburguer} />
+        {/* <Stack.Screen name="Carrinho" component={Carrinho} />
+        <Stack.Screen name="MenuHamburguer" component={MenuHamburguer} /> */}
         {/* <Stack.Screen name="Drawer" component={DrawerRoutes} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
-export default Rotas;
+export default RotasPublicas;

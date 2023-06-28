@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import { Text, TouchableOpacity, Image, View } from "react-native";
+import React, { useState, useContext} from "react";
+import { Text, TouchableOpacity, Image, View, Alert } from "react-native";
 import {
   Container,
   StyledPhoto,
   StyledText,
   StyledDiv,
   ContainerDiv,
+  
 } from "./style";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParams } from "../../routes";
@@ -14,21 +15,51 @@ import Fundo from "../../components/Fundo";
 import InputModal from "../../components/InputModal";
 import BotaoVerde from "../../components/BotaoVerde";
 import { Feather } from '@expo/vector-icons'; 
+import { AuthContext, useAuth } from "../../context/authContext";
+import {useForm, FieldValues} from 'react-hook-form';
 
-
+interface ScreenNavigationProp{
+  navigate : (screen : string) => void;
+}
+interface IFormInput {
+  [name : string] : any;
+  
+}
 const Login = () => {
+  
+  const {login : any} = useContext(AuthContext)
+  
   const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
   const handleCadastro = () => {
-    return navigation.navigate("Cadastro");
+    navigate("Cadastro");
   };
   const [name, setName] = useState("");
   const [senha, setSenha] = useState("");
   const [showSenha, setShowSenha] = useState(false);
-
-
+  const [loading, setLoading] = useState(false)
+  const {login} = useAuth();
+  const {handleSubmit, control} = useForm<FieldValues>();
+  const {navigate} = useNavigation<ScreenNavigationProp>();
+  // const handleEntrar = () => {
+  //   navigation.navigate('Home')
+  // }
   const esconderSenha = () => {
     setShowSenha(!showSenha);
   };
+
+  const handleEntrar = (form : IFormInput) => {
+    console.log(form)
+      const data={
+        username: name,
+        password: senha,
+      }
+      try{
+        setLoading(true);
+        login(data)
+      }catch(err){
+        Alert.alert('Error de autenticaçao no form ')
+      }
+  }
 
   return (
     <Fundo colors={["#BD6F29", "#ffffff"]} start={[1, 0]} end={[0, 1]}>
@@ -38,13 +69,14 @@ const Login = () => {
           <View>
           <StyledDiv>
             <StyledText> Usuário </StyledText>
-          </StyledDiv>
+          </StyledDiv>    
           <InputModal
             value={name}
-            placeholder={"Entre com o username"}
+            placeholder={"Usuário"}
             onChangeText={setName}
             keyboardType="default"
             inputWidth={246}
+            control= {control}
           />
           <StyledDiv> 
             <StyledText> Senha </StyledText>
@@ -52,11 +84,12 @@ const Login = () => {
           <StyledDiv>
           <InputModal
             value={senha}
-            placeholder={"Entre com a senha"}
+            placeholder={"Senha"}
             onChangeText={setSenha}
             keyboardType="default"
             inputWidth={246}
             secureTextEntry={!showSenha}
+            control={control}
           
           />
           <TouchableOpacity  onPress={esconderSenha}>
@@ -68,14 +101,15 @@ const Login = () => {
         <ContainerDiv>
           <BotaoVerde
             textoBotao="Entrar"
-            onPress={() => navigation.navigate("Home")}
+            onPress={handleSubmit(handleEntrar)}
+            disabled={loading}
           />
         </ContainerDiv>
        
         <ContainerDiv>
           <BotaoVerde
             textoBotao="Cadastrar"
-            onPress={() => navigation.navigate("Cadastro")}
+            onPress={handleCadastro}
           />
         </ContainerDiv>
         </Container>
