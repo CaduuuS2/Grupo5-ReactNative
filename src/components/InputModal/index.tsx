@@ -1,7 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { KeyboardTypeOptions, Modal, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { KeyboardTypeOptions, Modal, TextInput, View } from 'react-native';
 import { Container, TxtBlack, TxtGray, ViewInputModal, ModalBackground, TxtInputWhite, BtnInput } from './style';
-import { Control } from 'react-hook-form';
 
 type Types = {
     value: string;
@@ -10,7 +9,6 @@ type Types = {
     keyboardType: KeyboardTypeOptions | undefined;
     inputWidth: number;
     secureTextEntry?: boolean;
-    control : Control;
 }
 
 const InputModal = (props: Types) => {
