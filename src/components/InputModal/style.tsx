@@ -19,6 +19,7 @@ export const BtnInput = styled.TouchableOpacity<{ inputWidthPercent: number }>`
 
 export const TxtGray = styled.Text`
   color: lightgray;
+  font-size: 25px;
 `
 
 export const TxtInputWhite = styled.TextInput`

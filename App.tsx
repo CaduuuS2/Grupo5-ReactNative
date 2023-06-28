@@ -1,12 +1,12 @@
 import React from 'react';
-import AppRoutes from './src/routes';
 import { ProdutosContextProvider } from './src/context/ProdutosProvider';
+import Navigation from './src/routes/navigation';
 
 export default function App() {
 
   return (
     <ProdutosContextProvider>
-      <AppRoutes />
+      <Navigation />
     </ProdutosContextProvider>
   );
-}
+} 

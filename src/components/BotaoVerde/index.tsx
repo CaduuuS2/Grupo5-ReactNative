@@ -5,6 +5,7 @@ import { Container,Btn ,ButtonText} from './style';
 interface BotaoVerdeProps {
     textoBotao: string;
     onPress: () => void;
+    disabled ?: boolean;
   }
   
 const BotaoVerde: React.FC<BotaoVerdeProps> = ({ textoBotao, onPress}) => {
