@@ -3,7 +3,7 @@ import { Container, ProdutoView, BotaoVerdeView, TextoPadrao, CepView, ValorFret
 import { AntDesign } from '@expo/vector-icons';
 import BotaoVerde from '../../components/BotaoVerde';
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { StackParams } from "../../routes";
+import { StackParams } from '../../routes/rotasPrivadas';
 import { useNavigation } from "@react-navigation/native";
 import Fundo from '../../components/Fundo';
 

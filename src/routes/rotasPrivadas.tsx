@@ -6,6 +6,8 @@ import MenuHamburguer from '../components/MenuHamburguer';
 import Cabecalho from '../components/Cabecalho';
 import { Entypo } from '@expo/vector-icons';
 import { View } from 'react-native';
+import CarrinhoBotao from '../components/CarrinhoBotao';
+import React, { useState } from 'react';
 
 const Stack = createNativeStackNavigator();
 export type StackParams = {
@@ -15,6 +17,8 @@ export type StackParams = {
     Login: any;
 }
 function RotasPrivadas() {
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home"  >
@@ -24,12 +28,8 @@ function RotasPrivadas() {
            },
            headerTintColor: '#fff',
            headerTitleAlign: 'center',
-           headerLeft: () => (
-            <View style={{ marginLeft: 0 }}>
-              <Entypo name="menu" size={24} color="white" onPress={
-                () => {}
-              }/>
-            </View>
+           headerRight : () =>(
+            <CarrinhoBotao />
           )
            }} />
         <Stack.Screen name="Carrinho" component={Carrinho} />
