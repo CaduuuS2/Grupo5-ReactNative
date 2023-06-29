@@ -77,27 +77,6 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-<div align="center">
-
-
-
-
-## Considerações finais
-
-<p align="justify">Consideracao final</p>
-
 ## Colaboradores
 
 André Tauk: https://github.com/andtauk
