@@ -79,18 +79,15 @@
 
 ## Colaboradores
 
-André Tauk: https://github.com/andtauk
 
-Carlos Eduardo : https://github.com/CaduuuS2
+[André Tauk](https://github.com/andtauk)</br>
+[Carlos Eduardo](https://github.com/CaduuuS2)</br>
+[Franklin Malala](https://github.com/FranklinMalala)</br>
+[Rafael Vieira](https://github.com/RafaelVieiraCamara)</br>
+[Felipe Rubino](https://github.com/Felipe-Rubino)</br>
+[Jon Costa](https://github.com/costajon)</br>
 
-Franklin Malala : https://github.com/FranklinMalala
 
-Rafael Vieira: https://github.com/RafaelVieiraCamara
+# Orientador(a)
 
-Felipe Rubino: https://github.com/Felipe-Rubino
-
-Jon Costa: https://github.com/costajon
-
-## Orientador(a)
-
-Débora Souza: https://github.com/debysouza
+[Débora Souza](https://github.com/debysouza)</br>
