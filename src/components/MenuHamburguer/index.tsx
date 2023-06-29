@@ -10,6 +10,7 @@ import { useProdutosContext } from '../../context/ProdutosProvider';
 import { AuthContext } from '../../context/authContext';
 import { getUsuario, getCategorias } from '../../Services/produtoService';
 import BotaoCategoria from '../BotaoCategoria';
+import { ProdutosContext } from "../../context/ProdutosProvider";
 
 
 interface MenuHamburguerProps {
@@ -21,7 +22,6 @@ const MenuHamburguer: React.FC<MenuHamburguerProps> = ({ modalVisibility, setMod
 
     const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
 
-    const { produtos, setProdutos } = useProdutosContext();
     const { logout, id } = useContext(AuthContext)
 
     const [userInfo, setUserInfo] = useState({
@@ -29,6 +29,9 @@ const MenuHamburguer: React.FC<MenuHamburguerProps> = ({ modalVisibility, setMod
     })
 
     const [listaCategoria, setListaCategoria] = useState([]);
+    
+    const {produtos, setProdutos} = useContext(ProdutosContext)
+    
 
 
     const getUserInfo = async () => {
@@ -49,7 +52,7 @@ const MenuHamburguer: React.FC<MenuHamburguerProps> = ({ modalVisibility, setMod
     const getListaCategorias = async () => {
         const response = await getCategorias()
         console.log(response[0].nome)
-        setListaCategoria(response)
+        /* setListaCategoria(response) */
     }
 
 
@@ -57,6 +60,12 @@ const MenuHamburguer: React.FC<MenuHamburguerProps> = ({ modalVisibility, setMod
         getUserInfo();
         getListaCategorias();
     }, [])
+    
+    const handlePress = (id: number) => {
+        console.log("id: " + id)
+        console.log(produtos[0].valorUnitario)
+    }
+        
 
 
 
@@ -87,7 +96,7 @@ const MenuHamburguer: React.FC<MenuHamburguerProps> = ({ modalVisibility, setMod
                             <BotaoCategoria
                                 key={item.categoriaId.toString()}
                                 nomeCategoria={item.nome}
-                                onPress={() => { }/* handlePress */}
+                                onPress={() => handlePress(item.categoriaId)}
                             />
                         )} />
                     <BtnIconText onPress={() => { }
@@ -95,23 +104,6 @@ const MenuHamburguer: React.FC<MenuHamburguerProps> = ({ modalVisibility, setMod
                         <TextItens>Todas</TextItens>
                     </BtnIconText>
                 </View>
-
-                {/* <BtnIconText onPress={() => { }
-                }>
-                    <TextItens>História</TextItens>
-                </BtnIconText>
-
-                <BtnIconText onPress={() => { }
-                }>
-                    <TextItens>Filosofia</TextItens>
-                </BtnIconText>
-
-                <BtnIconText onPress={() => { }
-                }>
-                    <TextItens>Classicos da Antiguidade</TextItens>
-                </BtnIconText> */}
-
-
 
 
             </ViewCategoriaA>

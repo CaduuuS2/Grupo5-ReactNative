@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View } from "react-native";
 import {
   Container,
@@ -12,10 +12,11 @@ import { useNavigation } from "@react-navigation/native";
 import { Entypo } from "@expo/vector-icons";
 import { StackParams } from "../../routes/rotasPrivadas";
 import ModalHamburguer from "../../components/ModalHamburguer";
-import { GetProduto } from "../../Services/produtoService";
+import { getProduto } from "../../Services/produtoService";
 import Produto from "../../components/Produto";
 import { FlatList } from 'react-native';
 import Cabecalho from "../../components/Cabecalho";
+import { ProdutosContext } from "../../context/ProdutosProvider";
 
 interface ProdutoObjeto {
   produtoId: number;
@@ -30,15 +31,18 @@ const Home = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
   const [product, setProduct] = useState<ProdutoObjeto[]>();
   
-  React.useEffect(() => {
+  const {produtos, setProdutos} = useContext(ProdutosContext)
+  console.log("produtos" + produtos)
+  
+  /* React.useEffect(() => {
       async function fetchApi(){
-        const produtos = await GetProduto()
+        const produtos = await getProduto()
         setProduct(produtos)
         setProdutoLista(produtos)
       }
       fetchApi()
       
-  },[])
+  },[]) */
 
 
   const handleCarrinho = () => {
@@ -46,7 +50,7 @@ const Home = () => {
   };
   const [pesquisa, setPesquisa] = useState('')
   const [modalVisible, setModalVisible] = useState(false);
-  const [produtoLista, setProdutoLista] = useState(product)
+  /* const [produtoLista, setProdutoLista] = useState(product)
   React.useEffect( ()=> {
     if(pesquisa === ''){
       setProdutoLista(product)
@@ -54,7 +58,7 @@ const Home = () => {
     }
     const produtoFiltrado =  product?.filter(p => p.nome.toLowerCase().includes(pesquisa.toLowerCase()))
     setProdutoLista(produtoFiltrado)
-  },[pesquisa]) 
+  },[pesquisa]) */ 
 
   navigation.setOptions({
     headerTitle: () => <Cabecalho pesquisa = {pesquisa} setPesquisa = {setPesquisa}/>,
@@ -103,7 +107,7 @@ const Home = () => {
 
       <View style={{flex: 1}}>
         <FlatList
-        data={product}
+        data={produtos}
         keyExtractor={(item) => item.produtoId.toString()}
         renderItem={({ item , index}) => (
           <Produto
