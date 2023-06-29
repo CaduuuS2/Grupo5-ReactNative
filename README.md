@@ -3,7 +3,7 @@ Tabela de conteúdos
 * [Funcionalidades](#Funcionalidades)
 * [Telas](#Telas)
 * [Colaboradores](#Colaboradores)
-* [Orientador(a)](Orientador)
+* [Orientadora](Orientadora)
 
 # 
 <div align= "center">
@@ -95,6 +95,6 @@ Tabela de conteúdos
 [Jon Costa](https://github.com/costajon)</br>
 
 
-# Orientador(a)
+# Orientadora
 
 [Débora Souza](https://github.com/debysouza)</br>
