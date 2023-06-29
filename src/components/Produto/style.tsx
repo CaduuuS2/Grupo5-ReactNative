@@ -19,7 +19,7 @@ export const BlocoImagem = styled.Image`
 
 export const Container = styled.View`
   background-color: #dddddd;
-  height: 20%;
+  height: 150px;
   width: 92%;
   align-items: center;
   flex-direction: row;
@@ -34,7 +34,6 @@ export const BlocoBotoes = styled.View`
   justify-content: flex-end;
   padding: 2%;
   height: 30%;
-  weight: 70%;
 `;
 
 export const IconeImg = styled.Image`
@@ -58,8 +57,9 @@ export const BlocoTextos = styled.View`
   width: 100%;
   height: 70%;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
+  margin-left: 20px
   //background-color: #ff22ff
 `;
 
@@ -67,5 +67,5 @@ export const BlocoDados = styled.View`
 height: 100%;
 width: 67.5%;
 flex-direction: column;
-justify-content center;
+justify-content: center;
 `;
