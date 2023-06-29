@@ -41,16 +41,16 @@ const Cadastro = () => {
                         <LabelRow> Username </LabelRow>
                         <InputModal
                             value={username}
-                            placeholder={"Entre com o username:"}
+                            placeholder={"Insira usuário"}
                             onChangeText={setUserName}
                             keyboardType="default"
-                            inputWidth={90}
+                            inputWidth={190}
                         />
                     </ViewLabelCustom>
 
 
                     <ViewLabelCustom>
-                    <PhotoPerfil source={require("../../../assets/img/logo_size.png")} />
+                    <PhotoPerfil source={require("../../../assets/img/buck.png")} />
                     </ViewLabelCustom>
 
                 </ContainerCustom>
@@ -62,10 +62,10 @@ const Cadastro = () => {
                     <Label> Nome completo </Label>
                     <InputModal
                         value={nomeCompleto}
-                        placeholder={"Entre com o username:"}
+                        placeholder={"Nome completo"}
                         onChangeText={setNomeCompleto}
                         keyboardType="default"
-                        inputWidth={100}
+                        inputWidth={350}
                     />
                 </ViewLabel>
 
@@ -73,10 +73,10 @@ const Cadastro = () => {
                     <Label> Email </Label>
                     <InputModal
                         value={email}
-                        placeholder={"Entre com o username:"}
+                        placeholder={"Insira Email"}
                         onChangeText={setEmail}
                         keyboardType="default"
-                        inputWidth={100}
+                        inputWidth={350}
                     />
                 </ViewLabel>
 
@@ -86,10 +86,10 @@ const Cadastro = () => {
                         <LabelRow> CPF </LabelRow>
                         <InputModal
                             value={cpf}
-                            placeholder={"Entre com o username:"}
+                            placeholder={"000.000.000-00"}
                             onChangeText={setCPF}
                             keyboardType="default"
-                            inputWidth={90}
+                            inputWidth={155}
                         />
                     </ViewLabelCustom>
 
@@ -98,10 +98,10 @@ const Cadastro = () => {
                         <LabelRow> Password </LabelRow>
                         <InputModal
                             value={password}
-                            placeholder={"Entre com o username:"}
+                            placeholder={" *********"}
                             onChangeText={setPassword}
                             keyboardType="default"
-                            inputWidth={90}
+                            inputWidth={155}
                         />
                     </ViewLabelCustom>
 
@@ -113,10 +113,10 @@ const Cadastro = () => {
                         <LabelRow> Nascimento </LabelRow>
                         <InputModal
                             value={nascimento}
-                            placeholder={"Entre com o username:"}
+                            placeholder={" 00/00/0000"}
                             onChangeText={setNascimento}
                             keyboardType="default"
-                            inputWidth={90}
+                            inputWidth={155}
                         />
                     </ViewLabelCustom>
 
@@ -125,10 +125,10 @@ const Cadastro = () => {
                         <LabelRow> Telefone </LabelRow>
                         <InputModal
                             value={telefone}
-                            placeholder={"Entre com o username:"}
+                            placeholder={"24992135181"}
                             onChangeText={setTelefone}
                             keyboardType="default"
-                            inputWidth={90}
+                            inputWidth={155}
                         />
                     </ViewLabelCustom>
 
@@ -140,10 +140,10 @@ const Cadastro = () => {
                         <LabelRow> Cep </LabelRow>
                         <InputModal
                             value={cep}
-                            placeholder={"Entre com o username:"}
+                            placeholder={" 00000-000"}
                             onChangeText={setCep}
                             keyboardType="default"
-                            inputWidth={90}
+                            inputWidth={155}
                         />
                     </ViewLabelCustom>
 
@@ -152,10 +152,10 @@ const Cadastro = () => {
                         <LabelRow> Bairro </LabelRow>
                         <InputModal
                             value={bairro}
-                            placeholder={"Entre com o username:"}
+                            placeholder={"Insira bairro:"}
                             onChangeText={setBairro}
                             keyboardType="default"
-                            inputWidth={90}
+                            inputWidth={155}
                         />
                     </ViewLabelCustom>
 
@@ -165,10 +165,10 @@ const Cadastro = () => {
                     <Label> Logradouro </Label>
                     <InputModal
                         value={logradouro}
-                        placeholder={"Entre com o username:"}
+                        placeholder={"Insira endereço:"}
                         onChangeText={setLogradouro}
                         keyboardType="default"
-                        inputWidth={100}
+                        inputWidth={350}
                     />
                 </ViewLabel>
 
@@ -180,10 +180,10 @@ const Cadastro = () => {
                         <LabelRow> Complemento </LabelRow>
                         <InputModal
                             value={complemento}
-                            placeholder={"Entre com o username:"}
+                            placeholder={"Casa 2"}
                             onChangeText={setComplemento}
                             keyboardType="default"
-                            inputWidth={90}
+                            inputWidth={150}
                         />
 
 
@@ -194,24 +194,20 @@ const Cadastro = () => {
                         <LabelRow> Número </LabelRow>
                         <InputModal
                             value={numero}
-                            placeholder={"Entre com o username:"}
+                            placeholder={"160"}
                             onChangeText={setNumero}
                             keyboardType="default"
-                            inputWidth={90}
+                            inputWidth={150}
                         />
 
                     </ViewLabelCustom>
 
                 </ContainerCustom>
 
-
-
-                <ViewBotao>
+            </Container>
+            <ViewBotao>
                     <BotaoVerde textoBotao="Confirmar" onPress={() => navigation.navigate("Home")} />
                 </ViewBotao>
-
-            </Container>
-
         </Fundo>
     )
 

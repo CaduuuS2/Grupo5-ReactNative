@@ -1,10 +1,10 @@
 import styled from "styled-components/native"
 
-export const Container = styled.View`
+export const Container = styled.ScrollView`
   flex: 1;
   width: 100%;
   align-self: center;
-  justify-content: space-evenly;
+  
 `
 
 export const PhotoPerfil = styled.Image`
@@ -12,7 +12,7 @@ export const PhotoPerfil = styled.Image`
   height: 125px;
   border-radius: 100px;
   object-fit: cover;
-  margin-top: 5%;
+  margin-top: 15%;
   align-self: center;
 `;
 
@@ -31,6 +31,7 @@ export const Label = styled.Text`
 
 export const ViewLabel = styled.View`
   width: 90%;
+  margin-top: 5%;
  
  
   align-self: center;
@@ -39,7 +40,7 @@ export const ViewLabelCustom = styled.View`
   width: 45%;
   margin-left: 5%;
   justify-content: center;
-
+  margin-top: 5%;
  
 `
 
