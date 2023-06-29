@@ -49,6 +49,7 @@ export const TituloNome = styled.Text`
 export const TituloPreco = styled.Text`
 font-size: 17px;
 margin-top: 5%;
+
 `
 
 export const BlocoTextos = styled.View`

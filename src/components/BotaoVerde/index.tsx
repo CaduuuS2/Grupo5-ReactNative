@@ -4,7 +4,7 @@ import { Container,Btn ,ButtonText} from './style';
 
 interface BotaoVerdeProps {
     textoBotao: string;
-    onPress: () => void;
+    onPress ?: () => void;
     disabled ?: boolean;
   }
   

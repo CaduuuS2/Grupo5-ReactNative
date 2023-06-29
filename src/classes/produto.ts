@@ -2,9 +2,11 @@
 export class Produto {
   public produtoId: number;
   public nome: string;
-  public categoria: number;
+  public categoria: string;
   public descricao: string;
   public favorito: boolean;
+  public noCarrinho: boolean;
+  public url: string;
   public preco: number;
   public valorUnitario: number;
   public url: string;
@@ -12,7 +14,7 @@ export class Produto {
   constructor(
     produtoId: number,
     nome: string,
-    categoria: number,
+    categoria: string,
     descricao: string,
     favorito: boolean,
     preco: number,
@@ -24,6 +26,8 @@ export class Produto {
     this.categoria = categoria;
     this.descricao = descricao;
     this.favorito = favorito;
+    this.noCarrinho = noCarrinho;
+    this.url = url;
     this.preco = preco;
     this.valorUnitario = valorUnitario;
     this.url = url;

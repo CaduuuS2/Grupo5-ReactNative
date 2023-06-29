@@ -13,6 +13,7 @@ export const getProduto = async () => {
         console.error('Erro ao buscar dados:', error);
         attempts += 1;
       }
+
     }
   
     if (data === null) {

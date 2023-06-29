@@ -18,6 +18,7 @@ import { FlatList } from 'react-native';
 import Cabecalho from "../../components/Cabecalho";
 import { ProdutosContext } from "../../context/ProdutosProvider";
 
+
 interface ProdutoObjeto {
   produtoId: number;
   nome: string;
@@ -30,17 +31,23 @@ interface ProdutoObjeto {
 const Home = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
   const [product, setProduct] = useState<ProdutoObjeto[]>();
+  const [pesquisa, setPesquisa] = useState('')
+  const [modalVisible, setModalVisible] = useState(false);
+  const [produtoLista, setProdutoLista] = useState(product)
   
+
   const {produtos, setProdutos} = useContext(ProdutosContext)
   console.log("produtos" + produtos)
   
   /* React.useEffect(() => {
       async function fetchApi(){
         const produtos = await getProduto()
+
         setProduct(produtos)
         setProdutoLista(produtos)
       }
       fetchApi()
+
       
   },[]) */
 
@@ -51,6 +58,7 @@ const Home = () => {
   const [pesquisa, setPesquisa] = useState('')
   const [modalVisible, setModalVisible] = useState(false);
   /* const [produtoLista, setProdutoLista] = useState(product)
+
   React.useEffect( ()=> {
     if(pesquisa === ''){
       setProdutoLista(product)
@@ -60,7 +68,7 @@ const Home = () => {
     setProdutoLista(produtoFiltrado)
   },[pesquisa]) */ 
 
-  navigation.setOptions({
+    navigation.setOptions({
     headerTitle: () => <Cabecalho pesquisa = {pesquisa} setPesquisa = {setPesquisa}/>,
     headerLeft: () => (
       <View style={{ marginLeft: 0 }}>
@@ -75,37 +83,34 @@ const Home = () => {
       </View>
     ),
   });
-  
   return (
+    <Fundo colors={['#BD6F29', '#ffffff']}
+      start={[1, 0]}
+      end={[0, 1]}>
     <Container>
-          <ModalHamburguer
-            modalVisibility={modalVisible}
-            setModalVisibility={setModalVisible}
-          />
-
-          <BlocoSlides>
-            <Carrossel autoplay={true} autoplayTimeout={5} showsButtons={true}>
-              <Slide>
-                <SlideImagens
-                  source={require("../../../assets/img/HarryPotter.png")}
-                />
-              </Slide>
-
-              <Slide>
-                <SlideImagens
-                  source={require("../../../assets/img/logo_size.png")}
-                />
-              </Slide>
-
-              <Slide>
-                <SlideImagens
-                  source={require("../../../assets/img/buck.png")}
-                />
-              </Slide>
-            </Carrossel>
-          </BlocoSlides>
-
-      <View style={{flex: 1}}>
+      <ModalHamburguer
+        modalVisibility={modalVisible}
+        setModalVisibility={setModalVisible} />
+      <BlocoSlides>
+        <Carrossel autoplay={true} autoplayTimeout={5} showsButtons={true}>
+          <Slide>
+            <SlideImagens
+              source={require("../../../assets/img/propaganda3.png")}
+              style={{ resizeMode: 'contain' }} />
+          </Slide>
+          <Slide>
+            <SlideImagens
+              source={require("../../../assets/img/propaganda2.png")}
+              style={{ resizeMode: 'contain' }} />
+          </Slide>
+          <Slide>
+            <SlideImagens
+              source={require("../../../assets/img/propaganda1.png")}
+              style={{ resizeMode: 'contain' }} />
+          </Slide>
+        </Carrossel>
+      </BlocoSlides>
+      <View style={{ flex: 1 }}>
         <FlatList
         data={produtos}
         keyExtractor={(item) => item.produtoId.toString()}
@@ -120,8 +125,8 @@ const Home = () => {
       />
         
       </View>
-      
     </Container>
+    </Fundo>
   )
 };
 
