@@ -1,14 +1,14 @@
 import styled from "styled-components/native"
 
 export const Container = styled.View<{ inputWidthPercent: number }>`
-  height: 60px;
+  height: 45px;
   width: ${(props) => props.inputWidthPercent || 100}px;
   background-color: #fff;
   align-items: center;
   justify-content: center;
   border-color: #073528;
   border-width: 1px;
-  border-radius: 20px;
+  border-radius: 15px;
   color: #fff;
 `;
 
@@ -18,8 +18,8 @@ export const BtnInput = styled.TouchableOpacity<{ inputWidthPercent: number }>`
 `
 
 export const TxtGray = styled.Text`
-  color: lightgray;
-  font-size: 25px;
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 20px;
 `
 
 export const TxtInputWhite = styled.TextInput`

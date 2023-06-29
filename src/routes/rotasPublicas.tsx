@@ -22,8 +22,9 @@ function RotasPublicas() {
           headerTintColor: '#fff',
           headerTitleStyle: {
             fontWeight: 'bold',
-            fontSize: 30,
+            fontSize: 30, 
           },
+          headerTitleAlign: 'center',
          
         }}/>
         <Stack.Screen name="Login" component={Login} options={{headerShown: false}} />
