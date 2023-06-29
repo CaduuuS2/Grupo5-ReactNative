@@ -24,7 +24,6 @@ interface IFormInput {
   
 }
 const Login = () => {
-  //api com map
   const handleCadastro = () => {
     navigate("Cadastro");
   };

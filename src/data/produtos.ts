@@ -4,7 +4,7 @@ export const listaProdutos = [
   {
     id: 1,
     nome: 'produto 1',
-    categoria: 1,
+    categoria: "Programação",
     descricao: 'descricao 1',
     favorito: false,
     noCarrinho: false,
@@ -13,7 +13,7 @@ export const listaProdutos = [
   }, {
     id: 2,
     nome: 'produto 2',
-    categoria: 1,
+    categoria: 'Ficção',
     descricao: 'descricao 2',
     favorito: false,
     noCarrinho: false,
@@ -21,11 +21,11 @@ export const listaProdutos = [
     preco: 16.90
   }, {
     id: 3,
-    nome: 'produto 3',
-    categoria: 1,
+    nome: 'Muiiiiito gostoso',
+    categoria: "Filosofia",
     descricao: 'descricao 3',
     favorito: false,
-    noCarrinho: false,
+    noCarrinho: true,
     url: 'http://',
     preco: 11.90
   }

@@ -13,11 +13,14 @@ import { useNavigation } from "@react-navigation/native";
 import Fundo from '../../components/Fundo';
 import { ScrollView } from "react-native";
 import { ProdutosContext } from '../../context/ProdutosProvider';
+import { Produto } from '../../classes/produto';
 
 interface itemCarrinho {
     produtoId: number;
     nome: string;
     quantidadeCarrinho: number;
+    categoria: string;
+    descricao: string;
     valorUnitario: number;
     url: string;
     favorito: boolean;
@@ -37,7 +40,7 @@ const Carrinho = (itemFunctionComponente: itemCarrinho[]) => {
     const freteNordeste: number = 79.99 //Poderia vir da API
     const freteSul: number = 19.99 //Poderia vir da AP  
     const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
-    const {produtos, setProdutos} = useContext(ProdutosContext)
+    const { produtos, setProdutos } = useContext(ProdutosContext)
 
     const formatarValor = (valor: number) => {
         const valorFormatado = Number(valor.toFixed(2));
@@ -123,48 +126,60 @@ const Carrinho = (itemFunctionComponente: itemCarrinho[]) => {
 
     const excluirItemCarrinho = (itemFunction: itemCarrinho) => {
         if (itensCarrinho !== undefined) {
+            const itemFunctionParseId = itemFunction.produtoId 
+            let itemFunctionObjetoValido: Produto = {} as Produto
+            for (const itemForOf of produtos) {
+                if (itemForOf.id === itemFunctionParseId) {
+                    itemForOf.noCarrinho = false;
+                  itemFunctionObjetoValido = itemForOf;
+                }
+              }
+
+            setProdutos([...produtos.filter((itemFilter) => { return itemFilter.id !== itemFunctionParseId}), itemFunctionObjetoValido])
             setItensCarrinho(itensCarrinho.filter((itemFilter) => {
                 return itemFilter.produtoId !== itemFunction.produtoId
             }))
+            console.log(itemFunctionObjetoValido);
         } else {
             console.log("Error: The array itensCarrinho is undefined. Please try again.")
             return
         }
     }
 
-    const adicionarItemCarrinho = async () => {
-    formatarCep(cep)
-        const produtosParam = await produtos
-        const itensFunctionFiltered = produtosParam.filter((itemFilter)=> itemFilter.noCarrinho === true)
-        const itensCarrinhoPararam: itemCarrinho[] = itensFunctionFiltered.map((itemMap) => ({
+    const adicionarItemCarrinho = () => {
+        formatarCep(cep)
+        const produtosFiltered = produtos.filter((itemFilter) => itemFilter.noCarrinho === true)
+        const produtosObjetosValidos = produtosFiltered.map((itemMap) => ({
             produtoId: itemMap.id,
             nome: itemMap.nome,
             quantidadeCarrinho: 1,
+            categoria: itemMap.categoria,
+            descricao: itemMap.descricao,
             valorUnitario: itemMap.preco,
             url: itemMap.url,
             favorito: itemMap.favorito,
             noCarrinho: itemMap.noCarrinho
-          }))
-          console.log(itensCarrinhoPararam)
-          //setItensCarrinho(itensFunctionCarrinhoOn)
+        }))
+        calculoValorTotal(produtosObjetosValidos)
+        setItensCarrinho(produtosObjetosValidos)
     }
 
     const handleFavorito = (itemFunction: itemCarrinho) => {
         if (itemFunction.favorito === false && itensCarrinho !== undefined) {
-            const spreaditemFunction = {...itemFunction }
+            const spreaditemFunction = { ...itemFunction }
             spreaditemFunction.favorito = true
-            const newItensCarrinho = itensCarrinho.map((itemMap) => itemMap.produtoId === spreaditemFunction.produtoId ? spreaditemFunction: itemMap)
+            const newItensCarrinho = itensCarrinho.map((itemMap) => itemMap.produtoId === spreaditemFunction.produtoId ? spreaditemFunction : itemMap)
             setItensCarrinho(newItensCarrinho)
-        } else if (itemFunction.favorito === true && itensCarrinho !== undefined){
-            const spreaditemFunction = {...itemFunction }
+        } else if (itemFunction.favorito === true && itensCarrinho !== undefined) {
+            const spreaditemFunction = { ...itemFunction }
             spreaditemFunction.favorito = false
-            const newItensCarrinho = itensCarrinho.map((itemMap) => itemMap.produtoId === spreaditemFunction.produtoId ? spreaditemFunction: itemMap)
+            const newItensCarrinho = itensCarrinho.map((itemMap) => itemMap.produtoId === spreaditemFunction.produtoId ? spreaditemFunction : itemMap)
             setItensCarrinho(newItensCarrinho)
         }
     }
 
     useEffect(() => {
-       adicionarItemCarrinho()
+        adicionarItemCarrinho()
     }, [])
 
     return (
@@ -194,7 +209,7 @@ const Carrinho = (itemFunctionComponente: itemCarrinho[]) => {
                                                 <AntDesign name="minus" size={25} color="white" />
                                             </Botoes>
                                             <Botoes onPress={() => excluirItemCarrinho(itemMap)} style={{ width: 25, borderRadius: 15, backgroundColor: '#DDDDDD' }}>
-                                            <AntDesign name="delete" size={24} color="gray" />
+                                                <AntDesign name="delete" size={24} color="gray" />
                                             </Botoes>
                                             <Botoes onPress={() => handleFavorito(itemMap)} style={{ width: 25, borderRadius: 15, backgroundColor: '#DDDDDD' }}>
                                                 {itemMap.favorito === false ? <AntDesign name="heart" size={24} color="gray" /> : <AntDesign name="heart" size={24} color="red" />}
@@ -231,7 +246,7 @@ const Carrinho = (itemFunctionComponente: itemCarrinho[]) => {
                     <BotaoVerdeView>
                         <BotaoVerde
                             textoBotao="Confirmar"
-                            onPress={() => { setItensCarrinho([]); navigation.navigate("Home") }}
+                            onPress={() => { setItensCarrinho([]); navigation.navigate("ConfirmaCompra") }}
                         />
                     </BotaoVerdeView>
                 </Container>
