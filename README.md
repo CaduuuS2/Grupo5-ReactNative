@@ -2,15 +2,15 @@
 ![Alexandria]()
 </div>
 
-<p align="justify">Breve descricao do APP.</p>
+<p align="justify">O Alexandria é um app que te proporciona uma experiencia nostalgica. Através do app você tem acesso a um grande acervo de obras literárias de ótima qualidade.</p>
 
 ## Funcionalidades
 
-<p align="justify">Breve descriçao das funcionalidades do app</p>
+<p align="justify">Ao logar no app você tem acesso a tela Home que contém um carrossel, os produtos listados, bem como o ícone de carrinho, onde você acessa ao carrinho de compras.</p>
 
 ### Telas
 
-<p align ="justify">Aqui estão algumas das telas principais do aplicativo:</p>
+<p align ="justify">Aqui estão algumas das telas principais Alexandria</p>
 
 <div align= "center">
   
