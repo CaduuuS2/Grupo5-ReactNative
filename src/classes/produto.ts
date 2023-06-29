@@ -1,11 +1,5 @@
 
 export class Produto {
-  map(arg0: (produto: Produto) => Produto) {
-    throw new Error('Method not implemented.');
-  }
-  filter(arg0: (produto: Produto) => boolean) {
-    throw new Error('Method not implemented.');
-  }
   public id: number;
   public nome: string;
   public categoria: number;
