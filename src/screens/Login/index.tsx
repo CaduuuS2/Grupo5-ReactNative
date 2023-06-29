@@ -1,5 +1,5 @@
-import React, { useState, useContext} from "react";
-import { Text, TouchableOpacity, Image, View, Alert } from "react-native";
+import React, { useState } from "react";
+import { TouchableOpacity, View, Alert } from "react-native";
 import {
   Container,
   StyledPhoto,
@@ -8,14 +8,12 @@ import {
   ContainerDiv,
   
 } from "./style";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { StackParams } from "../../routes";
 import { useNavigation } from "@react-navigation/native";
 import Fundo from "../../components/Fundo";
 import InputModal from "../../components/InputModal";
 import BotaoVerde from "../../components/BotaoVerde";
 import { Feather } from '@expo/vector-icons'; 
-import { AuthContext, useAuth } from "../../context/authContext";
+import { useAuth } from "../../context/authContext";
 import {useForm, FieldValues} from 'react-hook-form';
 
 interface ScreenNavigationProp{
@@ -27,9 +25,6 @@ interface IFormInput {
 }
 const Login = () => {
   
-  const {login : any} = useContext(AuthContext)
-  
-  const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
   const handleCadastro = () => {
     navigate("Cadastro");
   };
@@ -40,9 +35,6 @@ const Login = () => {
   const {login} = useAuth();
   const {handleSubmit, control} = useForm<FieldValues>();
   const {navigate} = useNavigation<ScreenNavigationProp>();
-  // const handleEntrar = () => {
-  //   navigation.navigate('Home')
-  // }
   const esconderSenha = () => {
     setShowSenha(!showSenha);
   };
@@ -76,7 +68,6 @@ const Login = () => {
             onChangeText={setName}
             keyboardType="default"
             inputWidth={246}
-            control= {control}
           />
           <StyledDiv> 
             <StyledText> Senha </StyledText>
@@ -89,7 +80,6 @@ const Login = () => {
             keyboardType="default"
             inputWidth={246}
             secureTextEntry={!showSenha}
-            control={control}
           
           />
           <TouchableOpacity  onPress={esconderSenha}>

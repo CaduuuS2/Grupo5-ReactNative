@@ -4,12 +4,8 @@ import Fundo from "../../components/Fundo";
 import InputModal from '../../components/InputModal';
 import BotaoVerde from "../../components/BotaoVerde";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { StackParams } from "../../routes";
+import { StackParams } from "../../routes/rotasPrivadas";
 import { useNavigation } from "@react-navigation/native";
-
-
-
-
 
 
 const Cadastro = () => {
