@@ -231,7 +231,7 @@ const Carrinho = (itemFunctionComponente: itemCarrinho[]) => {
                     <BotaoVerdeView>
                         <BotaoVerde
                             textoBotao="Confirmar"
-                            onPress={() => { setItensCarrinho([]); navigation.navigate("Home") }}
+                            onPress={() => { setItensCarrinho([]); navigation.navigate("ConfirmaCompra") }}
                         />
                     </BotaoVerdeView>
                 </Container>
