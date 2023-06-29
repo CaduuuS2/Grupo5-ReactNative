@@ -8,13 +8,14 @@ import { Entypo } from '@expo/vector-icons';
 import { View } from 'react-native';
 import CarrinhoBotao from '../components/CarrinhoBotao';
 import React, { useState } from 'react';
-
+import ConfirmaCompra from '../screens/ConfirmaCompra';
 const Stack = createNativeStackNavigator();
 export type StackParams = {
     Home: any;
     Cadastro: any;
     Carrinho: any;
     Login: any;
+    ConfirmaCompra: any;
 }
 function RotasPrivadas() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -33,6 +34,14 @@ function RotasPrivadas() {
           )
            }} />
         <Stack.Screen name="Carrinho" component={Carrinho} />
+        <Stack.Screen name="ConfirmaCompra" component={ConfirmaCompra} 
+          options={{ 
+            headerStyle: {
+              backgroundColor: '#073528'
+             },
+             headerTintColor: '#fff',
+             headerTitleAlign: 'center',
+             }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
