@@ -5,11 +5,14 @@ import { Container, StyledInput } from './style';
 // Colocar opção para mostrar ou não barra de pesquisa
     // Barra de pesquisa filtrar por nome
 // Colocar opção para mostrar ou não menu hamburguer
-
+interface Props {
+    pesquisa : string;
+    setPesquisa : React.Dispatch<React.SetStateAction<string>>;
+}
 
     
-const Cabecalho = ( )  => {
-    const [pesquisa, setPesquisa] = useState("");
+const Cabecalho = ({pesquisa, setPesquisa} : Props )  => {
+    
     return (
         <Container>
              <StatusBar  />

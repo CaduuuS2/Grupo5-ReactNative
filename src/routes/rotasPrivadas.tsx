@@ -22,7 +22,7 @@ function RotasPrivadas() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home"  >
-        <Stack.Screen name="Home" component={Home} options={{ headerTitle: () => <Cabecalho/>,
+        <Stack.Screen name="Home" component={Home} options={{ 
           headerStyle: {
             backgroundColor: '#073528'
            },

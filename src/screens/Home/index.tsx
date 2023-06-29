@@ -15,6 +15,7 @@ import ModalHamburguer from "../../components/ModalHamburguer";
 import { GetProduto } from "../../Services/produtoService";
 import Produto from "../../components/Produto";
 import { FlatList } from 'react-native';
+import Cabecalho from "../../components/Cabecalho";
 
 interface ProdutoObjeto {
   produtoId: number;
@@ -28,23 +29,35 @@ interface ProdutoObjeto {
 const Home = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
   const [product, setProduct] = useState<ProdutoObjeto[]>();
-
-  const getProd = async () => {
-      setProduct(await GetProduto())
-  }
-
+  
   React.useEffect(() => {
-      getProd();
+      async function fetchApi(){
+        const produtos = await GetProduto()
+        setProduct(produtos)
+        setProdutoLista(produtos)
+      }
+      fetchApi()
+      
   },[])
 
 
   const handleCarrinho = () => {
     return navigation.navigate("Carrinho");
   };
-
+  const [pesquisa, setPesquisa] = useState('')
   const [modalVisible, setModalVisible] = useState(false);
+  const [produtoLista, setProdutoLista] = useState(product)
+  React.useEffect( ()=> {
+    if(pesquisa === ''){
+      setProdutoLista(product)
+      return 
+    }
+    const produtoFiltrado =  product?.filter(p => p.nome.toLowerCase().includes(pesquisa.toLowerCase()))
+    setProdutoLista(produtoFiltrado)
+  },[pesquisa]) 
 
   navigation.setOptions({
+    headerTitle: () => <Cabecalho pesquisa = {pesquisa} setPesquisa = {setPesquisa}/>,
     headerLeft: () => (
       <View style={{ marginLeft: 0 }}>
         <Entypo
@@ -59,26 +72,6 @@ const Home = () => {
     ),
   });
   
-  const productAlternativo = [
-    {
-    nome:"nome 1",
-    valorUnitario: 19,
-    produtoId: 1,
-    url: "https://www.pontotel.com.br/wp-content/uploads/2022/05/imagem-corporativa.jpg"
-  }, {
-    nome:"nome 1",
-    valorUnitario: 200,
-    produtoId: 2,
-    url: "https://www.pontotel.com.br/wp-content/uploads/2022/05/imagem-corporativa.jpg"
-  }, {
-    nome:"nome 1",
-    valorUnitario: 100,
-    produtoId: 3,
-    url: "https://www.pontotel.com.br/wp-content/uploads/2022/05/imagem-corporativa.jpg"
-  }
-]
-  
-
   return (
     <Container>
           <ModalHamburguer
@@ -109,11 +102,12 @@ const Home = () => {
           </BlocoSlides>
 
       <View style={{flex: 1}}>
-        <FlatList
-        data={productAlternativo}
+        <FlatList 
+        data={produtoLista}
         keyExtractor={(item) => item.produtoId.toString()}
-        renderItem={({ item }) => (
+        renderItem={({ item , index}) => (
           <Produto
+            key={index}
             nome={item.nome}
             imagem={item.url}
             preco={item.valorUnitario}
