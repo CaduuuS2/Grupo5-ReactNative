@@ -4,6 +4,7 @@ export interface IUser{
     username : string;
     email : string;
 }
+//Interface tesss
 export interface IProduto {
     produtoId: number;
     nome: string;
