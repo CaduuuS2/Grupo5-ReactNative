@@ -3,7 +3,7 @@ Tabela de conteúdos
 * [Funcionalidades](#Funcionalidades)
 * [Telas](#Telas)
 * [Colaboradores](#Colaboradores)
-* [Orientador(a)](Orientador(a))
+* [Orientador(a)](Orientador)
 
 # 
 <div align= "center">
