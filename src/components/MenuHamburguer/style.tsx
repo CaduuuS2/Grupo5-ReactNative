@@ -17,7 +17,7 @@ export const StyledPhoto = styled.Image`
 `
 
 export const ViewUser = styled.View`
-  height: auto;
+  height: 10%;
   flex-direction: row;
   justify-content:flex-end;
   align-items: flex-end;
