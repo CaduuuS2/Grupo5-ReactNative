@@ -34,7 +34,6 @@ export const BlocoBotoes = styled.View`
   justify-content: flex-end;
   padding: 2%;
   height: 30%;
-  weight: 70%;
 `;
 
 export const IconeImg = styled.Image`
@@ -45,13 +44,11 @@ export const IconeImg = styled.Image`
 
 export const TituloNome = styled.Text`
   font-size: 20px;
-  //background-color: blue;
 `;
 
 export const TituloPreco = styled.Text`
 font-size: 17px;
 margin-top: 5%;
-//background-color: white;
 `
 
 export const BlocoTextos = styled.View`
@@ -60,14 +57,13 @@ export const BlocoTextos = styled.View`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  //background-color: #ff22ff
 `;
 
 export const BlocoDados = styled.View`
 height: 100%;
 width: 67.5%;
 flex-direction: column;
-justify-content center;
+justify-content: center;
 `;
 
 export const VisorContador = styled.View`

@@ -44,7 +44,6 @@ export const IconeImg = styled.Image`
 
 export const TituloNome = styled.Text`
   font-size: 20px;
- 
 `;
 
 export const TituloPreco = styled.Text`
@@ -60,7 +59,6 @@ export const BlocoTextos = styled.View`
   align-items: flex-start;
   justify-content: flex-start;
   margin-left: 20px
- 
 `;
 
 export const BlocoDados = styled.View`
