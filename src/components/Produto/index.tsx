@@ -2,8 +2,17 @@ import React, {useState} from 'react';
 import { Container, BlocoImagem, BlocoBotoes, Botoes, BlocoTextos, BlocoDados, TituloNome, TituloPreco } from './style'
 import { MaterialIcons, AntDesign } from '@expo/vector-icons';
 
+interface ProdutoTipo {
+    produtoId: number;
+    nome: string;
+    quantidadeCarrinho: number;
+    valorUnitario: number;
+    url: string;
+}
+
 const Produto = () => {
     const [favorito, setFavorito] = useState(false);
+    const [noCarrinho, setNoCarrinho] = useState(false);
     const handleFavorito = () => {
         if (!favorito) {
         setFavorito(true);
@@ -13,6 +22,7 @@ const Produto = () => {
     }
 
     const handleCarrinho = () => {
+        
     }
 
     return (
