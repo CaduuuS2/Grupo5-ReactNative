@@ -1,5 +1,8 @@
-# <div align= "center">
-![Alexandria]()
+# 
+<div align= "center">
+  
+<![Alexandria](https://github.com/CaduuuS2/Grupo5-ReactNative/blob/main/imagens-readme/logo.png)
+
 </div>
 
 <p align="justify">O Alexandria é um app que te proporciona uma experiencia nostalgica. Através do app você tem acesso a um grande acervo de obras literárias de ótima qualidade.</p>
@@ -16,7 +19,9 @@
   
 #### Tela Principal
 
-![Tela Principal]()
+| Protótipo da Tela Principal | Protótipo da Tela Principal |
+|---|---|
+| ![Protótipo da Tela Principal](https://github.com/CaduuuS2/Grupo5-ReactNative/blob/main/imagens-readme/Tela%20Home%20-%20Figman.png) | ![Protótipo da Tela Principal](https://github.com/CaduuuS2/Grupo5-ReactNative/blob/main/imagens-readme/Tela%20Home%202%20-%20Figman.png) |
 
 *Figura 1: Protótipo da tela principal*
 <br/><br/><br/>
@@ -30,7 +35,9 @@
   
 #### Tela de Login
 
-![Tela de Login]()
+![Tela de Login](https://github.com/CaduuuS2/Grupo5-ReactNative/blob/main/imagens-readme/Tela%20Login%20-%20Figman.png)
+
+
 
 *Figura 3: Protótipo da tela de login*
 <br/><br/><br/>
@@ -41,25 +48,51 @@
 <br/><br/><br/>
 </div>
 <br/>
+
 <div align ="center">
   
-#### Tela do Carrinho
+#### Tela de Cadastro
 
-![Tela do Carrinho]()
+| Protótipo da Tela Cadastro | Protótipo da Tela Cadastro |
+|---|---|
+| ![Protótipo da Tela Cadastro](https://github.com/CaduuuS2/Grupo5-ReactNative/blob/main/imagens-readme/Tela%20Cadastro%20-%20Figman.png) | ![Protótipo da Tela Cadastro](https://github.com/CaduuuS2/Grupo5-ReactNative/blob/main/imagens-readme/Tela%20Cadastro%202%20-%20Figman.png) |
 
-*Figura 5: Protótipo da tela do carrinho*
-<br/><br/><br/>
-
-
-![Tela do Carrinho Implementada]()
-
-*Figura 6: Tela do carrinho após a implementação*
+*Figura 5: Protótipo da tela do Cadastro*
 <br/><br/><br/>
 
 </div>
-<br/>
-<div align="center">
+
+
+<div align ="center">
   
+#### Tela de Cadastro
+
+| Tela Cadastro Implementada | Tela Cadastro Implementada |
+|---|---|
+| ![Tela Cadastro Implementada]() | ![Tela Cadastro Implementada]() |
+
+*Figura 6: Tela Cadastroapós implementação*
+<br/><br/><br/>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div align="center">
+
+
+
 
 ## Considerações finais
 
