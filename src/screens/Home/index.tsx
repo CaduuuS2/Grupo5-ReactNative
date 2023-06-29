@@ -30,7 +30,7 @@ const Home = ({itemProduto} : Props) => {
 
   navigation.setOptions({headerLeft : () => (
     <View style={{ marginLeft: 0 }}>
-      <Entypo name="menu" size={24} color="white" onPress={
+      <Entypo name="menu" size={25} color="white" onPress={
         () => {setModalVisible(true)}
       }/>
     </View>
