@@ -6,7 +6,11 @@ import BotaoVerde from "../../components/BotaoVerde";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParams } from "../../routes/rotasPrivadas";
 import { useNavigation } from "@react-navigation/native";
+import { CadastrarUsuario } from "../../Services/produtoService";
 
+interface ScreenNavigationProp{
+    navigate : (screen : string) => void;
+}
 
 const Cadastro = () => {
     const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
@@ -23,6 +27,38 @@ const Cadastro = () => {
     const [logradouro, setLogradouro] = useState("")
     const [complemento, setComplemento] = useState("")
     const [numero, setNumero] = useState("")
+    const [data, setData] = useState({})
+    const {navigate} = useNavigation<ScreenNavigationProp>();
+    const handleCadastro = async () => {
+                setData ({
+                "nome": nomeCompleto,
+                "nomeUser": username,
+                "telefone": telefone,
+                "email": email,
+                "cpf": cpf,
+                "compra": true,
+                "venda": false,
+                "data": nascimento,
+                "cep": cep,
+                "numero": numero,
+                "complemento": complemento,
+                "password": password,
+                "roles": [
+                  "user"
+                ],
+                "url" : "https://s2-techtudo.glbimg.com/Bxr-QA4_gL25CarCCxr9JQFybt8=/0x0:1024x609/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2022/c/u/15eppqSmeTdHkoAKM0Uw/dall-e-2.jpg"
+            }) 
+             console.log(data)
+                const status = await CadastrarUsuario(data)
+                if(status === 200){
+                    setTimeout(() => {
+                        // TODO Avisar o usuario que foi cadastrado com sucesso
+                        navigate('Login')
+                    }, 1000);
+                    
+                }
+
+    }
     
 
     return (
@@ -41,7 +77,9 @@ const Cadastro = () => {
                             onChangeText={setUserName}
                             keyboardType="default"
                             inputWidth={190}
+                            
                         />
+                       
                     </ViewLabelCustom>
 
 
@@ -202,7 +240,7 @@ const Cadastro = () => {
 
             </Container>
             <ViewBotao>
-                    <BotaoVerde textoBotao="Confirmar" onPress={() => navigation.navigate("Home")} />
+                    <BotaoVerde textoBotao="Confirmar" onPress={handleCadastro} />
                 </ViewBotao>
         </Fundo>
     )
