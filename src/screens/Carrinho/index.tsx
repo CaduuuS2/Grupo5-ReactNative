@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
-import { Container, ProdutoView, BotaoVerdeView, TextoPadrao, CepView, ValorFreteView, ValorTotalView, FormaDePagamentoView, TextoFormaPagamentoView, AvisoCarrinho, BotaoTipoPagamento } from './style';
+import React, { useContext, useEffect, useState } from 'react';
+import {
+    Container, BotaoVerdeView, TextoPadrao, CepView, ValorFreteView, ValorTotalView,
+    FormaDePagamentoView, TextoFormaPagamentoView, AvisoCarrinho, BotaoTipoPagamento,
+    ContainerProduto, BlocoImagem, BlocoBotoes, Botoes, BlocoTextos, BlocoDados, TituloNome,
+    TituloPreco, VisorContador, TextoContador
+} from './style';
 import { AntDesign } from '@expo/vector-icons';
 import BotaoVerde from '../../components/BotaoVerde';
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParams } from '../../routes/rotasPrivadas';
 import { useNavigation } from "@react-navigation/native";
 import Fundo from '../../components/Fundo';
+import { ScrollView } from "react-native";
+import { ProdutosContext } from '../../context/ProdutosProvider';
 
 interface itemCarrinho {
     produtoId: number;
@@ -13,9 +20,11 @@ interface itemCarrinho {
     quantidadeCarrinho: number;
     valorUnitario: number;
     url: string;
+    favorito: boolean;
+    noCarrinho: boolean;
 }
-
-const Carrinho = () => {
+//comentario
+const Carrinho = (itemFunctionComponente: itemCarrinho[]) => {
     const [valorFrete, setValorFrete] = useState<string>() //Não formatado
     const [valorTotal, setValorTotal] = useState<string>() //Formatado
     const [itensCarrinho, setItensCarrinho] = useState<itemCarrinho[]>()
@@ -28,36 +37,7 @@ const Carrinho = () => {
     const freteNordeste: number = 79.99 //Poderia vir da API
     const freteSul: number = 19.99 //Poderia vir da AP  
     const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
-
-    let flor1 = {
-        produtoId: 1,
-        nome: 'Rosa Vermelha',
-        quantidadeCarrinho: 3,
-        valorUnitario: 12.99,
-        url: 'https://exemplo.com/rosavermelha.jpg',
-    };
-
-    let flor2 = {
-        produtoId: 2,
-        nome: 'Lírio Branco',
-        quantidadeCarrinho: 2,
-        valorUnitario: 9.99,
-        url: 'https://exemplo.com/liriobranco.jpg',
-    };
-
-    let flor3 = {
-        produtoId: 3,
-        nome: 'Orquídea Azul',
-        quantidadeCarrinho: 1,
-        valorUnitario: 19.99,
-        url: 'https://exemplo.com/orquideaazul.jpg',
-    };
-
-    const IconeSvgPix = `
-  <svg xmlns="'../../../assets/icone/pix.svg'" width="50" height="50" viewBox="0 0 100 100">
-  <circle cx="50" cy="50" r="40" fill="black" />
-  </svg>
-  `;
+    const {produtos, setProdutos} = useContext(ProdutosContext)
 
     const formatarValor = (valor: number) => {
         const valorFormatado = Number(valor.toFixed(2));
@@ -113,7 +93,7 @@ const Carrinho = () => {
         if (parametro === 1 || parametro === -1) {
             if (itensCarrinho !== undefined) {
                 const MapItensCarrinho = itensCarrinho.map((itemMap) => {
-                     if (itemMap.produtoId === itemFunction.produtoId) {
+                    if (itemMap.produtoId === itemFunction.produtoId) {
                         if (itemMap.quantidadeCarrinho > 1) {
                             let spreadItemMap: itemCarrinho = { ...itemMap }
                             spreadItemMap.quantidadeCarrinho = parametro + spreadItemMap.quantidadeCarrinho
@@ -152,104 +132,111 @@ const Carrinho = () => {
         }
     }
 
-    const adicionarItemCarrinho = (itemFunction: any) => {
-        formatarCep(cep)
-        const itemCarrinho = {
-            produtoId: itemFunction.produtoId,
-            nome: itemFunction.nome,
-            quantidadeCarrinho: 3,
-            valorUnitario: itemFunction.valorUnitario,
-            url: itemFunction.url,
-        }
-        if (itensCarrinho !== undefined) {
-            let produtoExiste: boolean = false
-            for (const itemForOf of itensCarrinho) {
-                if (itemForOf.produtoId === itemCarrinho.produtoId) {
-                    produtoExiste = true
-                    break
-                }
-            }
-            if (!produtoExiste) {
-                setItensCarrinho([...itensCarrinho, itemCarrinho])
-                calculoValorTotal([...itensCarrinho, itemCarrinho])
-            } else {
-                console.log("Error: The product already exists. Please try again.")
-                return
-            }
-        } else {
-            setItensCarrinho([itemCarrinho])
-            calculoValorTotal([itemCarrinho])
+    const adicionarItemCarrinho = async () => {
+    formatarCep(cep)
+        const produtosParam = await produtos
+        const itensFunctionFiltered = produtosParam.filter((itemFilter)=> itemFilter.noCarrinho === true)
+        const itensCarrinhoPararam: itemCarrinho[] = itensFunctionFiltered.map((itemMap) => ({
+            produtoId: itemMap.id,
+            nome: itemMap.nome,
+            quantidadeCarrinho: 1,
+            valorUnitario: itemMap.preco,
+            url: itemMap.url,
+            favorito: itemMap.favorito,
+            noCarrinho: itemMap.noCarrinho
+          }))
+          console.log(itensCarrinhoPararam)
+          //setItensCarrinho(itensFunctionCarrinhoOn)
+    }
+
+    const handleFavorito = (itemFunction: itemCarrinho) => {
+        if (itemFunction.favorito === false && itensCarrinho !== undefined) {
+            const spreaditemFunction = {...itemFunction }
+            spreaditemFunction.favorito = true
+            const newItensCarrinho = itensCarrinho.map((itemMap) => itemMap.produtoId === spreaditemFunction.produtoId ? spreaditemFunction: itemMap)
+            setItensCarrinho(newItensCarrinho)
+        } else if (itemFunction.favorito === true && itensCarrinho !== undefined){
+            const spreaditemFunction = {...itemFunction }
+            spreaditemFunction.favorito = false
+            const newItensCarrinho = itensCarrinho.map((itemMap) => itemMap.produtoId === spreaditemFunction.produtoId ? spreaditemFunction: itemMap)
+            setItensCarrinho(newItensCarrinho)
         }
     }
 
+    useEffect(() => {
+       adicionarItemCarrinho()
+    }, [])
+
     return (
-        <Fundo colors={["#BD6F29", "#ffffff"]} start={[1, 0]} end={[0, 1]}>
-            <Container>
-                {(itensCarrinho !== undefined) ?
-                    <>{
-                        itensCarrinho.map((itemMap) =>
-                            <ProdutoView key={itemMap.produtoId}>
-                                <TextoPadrao>{itemMap.nome}</TextoPadrao>
-                                <TextoPadrao>{itemMap.quantidadeCarrinho}</TextoPadrao>
-                            </ProdutoView>
-                        )}
-                    </>
-                    :
-                    <AvisoCarrinho>
-                        <TextoPadrao>Seu carrinho está vazio, visite nossa página principal e escolha um produto de sua preferência ;)</TextoPadrao>
-                    </AvisoCarrinho>
-                }
-                <TextoFormaPagamentoView>
-                    <CepView>
-                        <TextoPadrao>CEP: {cepFormatado}</TextoPadrao>
-                    </CepView>
-                    <ValorFreteView>
-                        <TextoPadrao>Frete:{valorFrete}</TextoPadrao>
-                    </ValorFreteView>
-                    <ValorTotalView>
-                        <TextoPadrao>Valor Total: {valorTotal}</TextoPadrao>
-                    </ValorTotalView>
-                </TextoFormaPagamentoView>
-                <FormaDePagamentoView>
-                    <BotaoTipoPagamento>
-                        <AntDesign name="qrcode" size={50} color="black" />
-                    </BotaoTipoPagamento>
-                    <BotaoTipoPagamento>
-                        <AntDesign name="barcode" size={50} color="black" />
-                    </BotaoTipoPagamento>
-                </FormaDePagamentoView>
-                <BotaoVerdeView>
-                    <BotaoVerde
-                        textoBotao="Confirmar"
-                        onPress={() => { setItensCarrinho([]); navigation.navigate("Home") }}
-                    />
-                </BotaoVerdeView>
-                <BotaoVerdeView>
-                    <BotaoVerde
-                        textoBotao="Confirmar"
-                        onPress={() => { adicionarItemCarrinho(flor1) }}
-                    />
-                </BotaoVerdeView>
-                <BotaoVerdeView>
-                    <BotaoVerde
-                        textoBotao="Confirmar"
-                        onPress={() => { adicionarItemCarrinho(flor2) }}
-                    />
-                </BotaoVerdeView>
-                <BotaoVerdeView>
-                    <BotaoVerde
-                        textoBotao="Confirmar"
-                        onPress={() => { quantidadeItemCarrinhoContador(flor1, 1) }}
-                    />
-                </BotaoVerdeView>
-                <BotaoVerdeView>
-                    <BotaoVerde
-                        textoBotao="Confirmar"
-                        onPress={() => { quantidadeItemCarrinhoContador(flor2, -1) }}
-                    />
-                </BotaoVerdeView>
-            </Container>
-        </Fundo>
+        <ScrollView>
+            <Fundo colors={["#BD6F29", "#ffffff"]} start={[1, 0]} end={[0, 1]}>
+                <Container>
+                    {(itensCarrinho !== undefined) ?
+                        <>{
+                            itensCarrinho.map((itemMap) =>
+                                <ContainerProduto>
+                                    <BlocoImagem source={require('../../../assets/img/buck.png')}></BlocoImagem>
+                                    <BlocoDados>
+                                        <BlocoTextos>
+                                            <TituloNome>{itemMap.nome}</TituloNome>
+                                            <TituloPreco>{'R$ ' + itemMap.valorUnitario}</TituloPreco>
+                                        </BlocoTextos>
+                                        <BlocoBotoes>
+                                            <Botoes onPress={() => quantidadeItemCarrinhoContador(itemMap, 1)} style={{ width: 25, borderBottomEndRadius: 0, borderTopEndRadius: 0 }}>
+                                                <AntDesign name="plus" size={25} color="white" />
+                                            </Botoes>
+                                            <VisorContador>
+                                                <TextoContador>
+                                                    {itemMap.quantidadeCarrinho}
+                                                </TextoContador>
+                                            </VisorContador>
+                                            <Botoes onPress={() => quantidadeItemCarrinhoContador(itemMap, -1)} style={{ width: 25, marginLeft: 0, borderBottomStartRadius: 0, borderTopLeftRadius: 0 }}>
+                                                <AntDesign name="minus" size={25} color="white" />
+                                            </Botoes>
+                                            <Botoes onPress={() => excluirItemCarrinho(itemMap)} style={{ width: 25, borderRadius: 15, backgroundColor: '#DDDDDD' }}>
+                                            <AntDesign name="delete" size={24} color="gray" />
+                                            </Botoes>
+                                            <Botoes onPress={() => handleFavorito(itemMap)} style={{ width: 25, borderRadius: 15, backgroundColor: '#DDDDDD' }}>
+                                                {itemMap.favorito === false ? <AntDesign name="heart" size={24} color="gray" /> : <AntDesign name="heart" size={24} color="red" />}
+                                            </Botoes>
+                                        </BlocoBotoes>
+                                    </BlocoDados>
+                                </ContainerProduto>
+                            )}
+                        </>
+                        :
+                        <AvisoCarrinho>
+                            <TextoPadrao>Seu carrinho está vazio, visite nossa página principal e escolha um produto de sua preferência ;)</TextoPadrao>
+                        </AvisoCarrinho>
+                    }
+                    <TextoFormaPagamentoView>
+                        <CepView>
+                            <TextoPadrao>CEP: {cepFormatado}</TextoPadrao>
+                        </CepView>
+                        <ValorFreteView>
+                            <TextoPadrao>Frete:{valorFrete}</TextoPadrao>
+                        </ValorFreteView>
+                        <ValorTotalView>
+                            <TextoPadrao>Valor Total: {valorTotal}</TextoPadrao>
+                        </ValorTotalView>
+                    </TextoFormaPagamentoView>
+                    <FormaDePagamentoView>
+                        <BotaoTipoPagamento>
+                            <AntDesign name="qrcode" size={50} color="black" />
+                        </BotaoTipoPagamento>
+                        <BotaoTipoPagamento>
+                            <AntDesign name="barcode" size={50} color="black" />
+                        </BotaoTipoPagamento>
+                    </FormaDePagamentoView>
+                    <BotaoVerdeView>
+                        <BotaoVerde
+                            textoBotao="Confirmar"
+                            onPress={() => { setItensCarrinho([]); navigation.navigate("Home") }}
+                        />
+                    </BotaoVerdeView>
+                </Container>
+            </Fundo>
+        </ScrollView>
     )
 }
 export default Carrinho;
