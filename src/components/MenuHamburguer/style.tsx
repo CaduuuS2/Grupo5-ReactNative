@@ -4,15 +4,13 @@ export const Container = styled.View`
   flex: 1;
   width: 70%;
   background-color: #1A0E0E;
-  align-items: center;
-  justify-content: center;
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
 `
 
 export const StyledPhoto = styled.Image`
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   border-radius: 75px;
   object-fit: cover;
   margin-top: 20px;
@@ -21,7 +19,8 @@ export const StyledPhoto = styled.Image`
 export const ViewUser = styled.View`
   height: 10%;
   flex-direction: row;
-  margin-top: 20px;
+  justify-content:flex-end;
+  align-items: flex-end;
 `
 
 export const UserPhoto = styled.Image`
@@ -35,6 +34,7 @@ export const UserPhoto = styled.Image`
 
 export const ViewUsernameEmail = styled.View`
   width: 60%;
+  height: 60px;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
@@ -42,7 +42,15 @@ export const ViewUsernameEmail = styled.View`
 
 export const ViewCategoria = styled.View`
   justify-content: center;
-  width: 100%;
+  flex: 1;
+  padding: 20px;
+  align-items: flex-start;
+  
+`
+
+export const ViewCategoriaA = styled.View`
+  justify-content: center;
+  flex: 2;
   padding: 20px;
   align-items: flex-start;
   
@@ -51,7 +59,6 @@ export const ViewCategoria = styled.View`
 export const TextCategoria = styled.Text`
   color: white;
   margin: 5px;
-  
 `
 
 export const TextItens = styled(TextCategoria)`
