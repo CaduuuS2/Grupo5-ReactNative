@@ -6,14 +6,14 @@ import styled from "styled-components/native"
 
 export const Container = styled.View`
   flex: 1;
-  background-color: #bd6f29;
   align-items: center;
   justify-content: center;
   
   
 `;
 
-export const Topo = styled.View`  
+export const Topo = styled.View` 
+  
 `
 export const ConteudoPrincipal = styled.View`
   padding: 1%;
@@ -45,7 +45,7 @@ export const BlocoTextos = styled.View`
 export const BlocoImagem = styled.Image`
   width: 30%;
   height: 98%;
-  margin-right: 2%;
+  
   
 `;
 
@@ -73,29 +73,40 @@ export const BlocoBotoes = styled.View`
 export const IconeImg = styled.Image`
   width: 60px;
   height: 20px;
-  margin: 2px;
+  
 `;
 
 export const Carrossel = styled(Swiper)`
   height: 200px;
-  bottom: 10px;
+  
+  
 `;
 export const Slide = styled.View`
   flex:1;
+ 
+ 
 `;
 
 export const SlideImagens = styled.Image`
-  height: 100%;
   width: 100%;
+  height: 100%;
+  
+
+  
+ 
+ 
+  
 `;
 
 
 export const BlocoSlides = styled.View`
-  height: 200px;
+    height: 200px;
+   
 `;
 
 export const Blocotopo = styled.View`
   height: 20%;
+
 `
 
 
