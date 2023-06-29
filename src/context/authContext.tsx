@@ -29,7 +29,6 @@ export const AuthContext = React.createContext<IAuthContext>(
 
 const tokenData = "@DevProfile:accessToken";
 const userData = "@DevProfile:id";
-console.log(tokenData, userData);
 
 export const AuthProvider: React.FC<IProps> = ({ children }) => {
   const [data, setData] = React.useState<IAuthState>({} as IAuthState);
@@ -51,11 +50,9 @@ export const AuthProvider: React.FC<IProps> = ({ children }) => {
   const login = async ({ username, password }: ICredentials) => {
     try {
       const response = await Api.post("/auth/signin", { username, password });
-      console.log(response.data);
       const { accessToken, id } = response.data;
       await AsyncStorage.setItem(tokenData, accessToken);
       await AsyncStorage.setItem(userData, JSON.stringify(id));
-      console.log(accessToken, id);
       Api.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
       setData({ accessToken, id });
     } catch (error) {
@@ -77,7 +74,6 @@ export const AuthProvider: React.FC<IProps> = ({ children }) => {
 
 export const useAuth=() : IAuthContext =>{
     const context = React.useContext(AuthContext)
-    console.log(context)
     if (!context){
         throw new Error('useAuth deve ser usado com provider')
     }
