@@ -39,7 +39,7 @@ const Login = () => {
     setShowSenha(!showSenha);
   };
 
-  const handleEntrar = (form : IFormInput) => {
+  const handleEntrar =  (form : IFormInput) => {
     console.log(form)
       const data={
         username: name,

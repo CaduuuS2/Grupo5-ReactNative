@@ -13,7 +13,7 @@ export const GetProduto = async () =>{
     }
 }
 
-// export const Post
+
 
 
 
