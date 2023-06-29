@@ -7,7 +7,6 @@ import { StackParams } from '../../routes/rotasPrivadas';
 import { useNavigation } from "@react-navigation/native";
 import { filtrarProdutosPorCategoria } from '../../funcoes/funcoes';
 import { useProdutosContext } from '../../context/ProdutosProvider';
-import { produtosInit } from '../../data/produtos';
 import { AuthContext } from '../../context/authContext';
 
 interface MenuHamburguerProps {
@@ -34,7 +33,7 @@ const MenuHamburguer: React.FC<MenuHamburguerProps> = ({ modalVisibility, setMod
 
             </ViewUser>
 
-            <ViewCategoria>
+            {/* <ViewCategoria>
                 <TextCategoria style={{ color: "white" }}>Acervo:</TextCategoria>
                 <BtnIconText onPress={() => {
                     setProdutos(filtrarProdutosPorCategoria(produtosInit, 1))
@@ -62,7 +61,7 @@ const MenuHamburguer: React.FC<MenuHamburguerProps> = ({ modalVisibility, setMod
                 </BtnIconText>
 
 
-            </ViewCategoria>
+            </ViewCategoria> */}
             <ViewCategoria>
                 <TextCategoria style={{ color: "white" }}>Seções:</TextCategoria>
                 <BtnIconText onPress={() => setModalVisibility(false)}>
