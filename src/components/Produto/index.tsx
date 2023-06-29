@@ -26,7 +26,7 @@ const Produto: React.FC<ProdutoProps> = ({ nome, preco, imagem }) => {
       <BlocoImagem source= {{uri: imagem}} />
       <BlocoDados>
           <BlocoTextos>
-          <TituloNome>Nome: {nome}</TituloNome>
+          <TituloNome>{nome}</TituloNome>
           <TituloPreco>Valor: {preco.toFixed(2)}</TituloPreco>
         </BlocoTextos>
                 
