@@ -33,6 +33,7 @@ const Home = () => {
   const [pesquisa, setPesquisa] = useState('')
   const [modalVisible, setModalVisible] = useState(false);
   const [produtoLista, setProdutoLista] = useState(product)
+  
   React.useEffect(() => {
         async function fetchApi(){
         const produtos = await GetProduto()

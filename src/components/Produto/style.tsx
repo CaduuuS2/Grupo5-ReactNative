@@ -44,13 +44,13 @@ export const IconeImg = styled.Image`
 
 export const TituloNome = styled.Text`
   font-size: 20px;
-  //background-color: blue;
+ 
 `;
 
 export const TituloPreco = styled.Text`
 font-size: 17px;
 margin-top: 5%;
-//background-color: white;
+
 `
 
 export const BlocoTextos = styled.View`
@@ -60,7 +60,7 @@ export const BlocoTextos = styled.View`
   align-items: flex-start;
   justify-content: flex-start;
   margin-left: 20px
-  //background-color: #ff22ff
+ 
 `;
 
 export const BlocoDados = styled.View`
