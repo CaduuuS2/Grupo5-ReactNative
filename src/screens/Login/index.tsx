@@ -40,7 +40,6 @@ const Login = () => {
   };
 
   const handleEntrar =  (form : IFormInput) => {
-    console.log(form)
       const data={
         username: name,
         password: senha,

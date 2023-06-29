@@ -5,7 +5,6 @@ export const GetProduto = async () => {
     try {
         const response = await Api.get('/produto/lista');
         const { data } = response;
-        console.log(data);
         return data;
     } catch (error) {
         console.log('Error', error);
@@ -15,7 +14,6 @@ export const GetProduto = async () => {
 
 export const CadastrarUsuario = async (data : any) => {
     
-    console.log(data)
     try {
     const response = await Api.post('/usuario/cadastrar', data);
     if(response.status === 200) {

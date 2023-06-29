@@ -13,8 +13,7 @@ export const Container = styled.View`
   
 `;
 
-export const Topo = styled.View`
-  flex: 1;
+export const Topo = styled.View`  
 `
 export const ConteudoPrincipal = styled.View`
   padding: 1%;
@@ -92,8 +91,7 @@ export const SlideImagens = styled.Image`
 
 
 export const BlocoSlides = styled.View`
-  height: 50%;
-  bottom: 2%;
+  height: 200px;
 `;
 
 export const Blocotopo = styled.View`
