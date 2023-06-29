@@ -23,7 +23,7 @@ interface itemCarrinho {
     favorito: boolean;
     noCarrinho: boolean;
 }
-
+//comentario
 const Carrinho = (itemFunctionComponente: itemCarrinho[]) => {
     const [valorFrete, setValorFrete] = useState<string>() //Não formatado
     const [valorTotal, setValorTotal] = useState<string>() //Formatado
