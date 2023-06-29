@@ -53,14 +53,3 @@ export const listaProdutos = [
   }
 ]
 
-export const produtosInit: Produto[] = listaProdutos.map(
-  (produto) =>
-    new Produto(
-      produto.id,
-      produto.nome,
-      produto.categoria,
-      produto.descricao,
-      produto.favorito,
-      produto.preco
-    )
-)

@@ -6,9 +6,18 @@ import { useNavigation } from "@react-navigation/native";
 import { MaterialIcons, AntDesign, Entypo } from '@expo/vector-icons';
 import { StackParams } from '../../routes/rotasPrivadas';
 import ModalHamburguer from '../../components/ModalHamburguer';
+import { IProduto } from '../../model/user';
 
-const Home = () => {
+type Props = {
+  itemProduto : IProduto;
+ 
+}
 
+
+
+const Home = ({itemProduto} : Props) => {
+
+  
   const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
 
   const handleCarrinho = () => {
@@ -16,8 +25,6 @@ const Home = () => {
       navigation.navigate('Carrinho')
     )
   }
-
-  
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -28,11 +35,11 @@ const Home = () => {
       }/>
     </View>
   ),})
-  
+ 
 
   return (
     <Container>
-      <ScrollView>
+      <ScrollView>  
         <Topo>
           
           <ModalHamburguer modalVisibility={ modalVisible } setModalVisibility={ setModalVisible }/>
@@ -80,7 +87,7 @@ const Home = () => {
             <BlocoImagem source={require('../../../assets/img/HarryPotter.png')}></BlocoImagem>
               <BlocoTextos>
                 <Item>
-                <Textos>Nome: Harry Potter</Textos>
+                <Textos>{}</Textos>
                 </Item>
                 
                 <Item>
