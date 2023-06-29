@@ -3,9 +3,10 @@ import { Api } from "./api";
 
 export const GetProduto = async () => {
     try {
-        const response = await Api.get('/produto/lista');
+        const response = await Api.get('/produto/lista',{headers:{Authorization: 'Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJiZW56ZW1hanIiLCJpYXQiOjE2ODgwNzIwMzksImV4cCI6MTY4ODE1ODQzOX0.-1XxzHqz6RrLZVgRvsAY8Hdv0kcoQ0UpsEFWQSaqqwbcnOo5TlrGddD3RXp7SAW3'}});
         const { data } = response;
         return data;
+
     } catch (error) {
         console.log('Error', error);
         throw error;

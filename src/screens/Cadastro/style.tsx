@@ -18,7 +18,6 @@ export const PhotoPerfil = styled.Image`
 
 export const ContainerCustom = styled.View`
 flex-direction:row;
-
 width: 100%;
 
 `

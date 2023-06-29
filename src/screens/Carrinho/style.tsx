@@ -4,7 +4,7 @@ export const Container = styled.View`
 flex: 1;
 align-items: center;
 justify-content: flex-start;
-self-align: center;
+align-self: center;
 margin-top: 10%;
 width: 100%;
 `;
@@ -21,8 +21,8 @@ export const TextoFormaPagamentoView = styled.View`
 `;
 export const FormaDePagamentoView = styled.View`
   flex-direction: row;
-  justifyContent: space-between;
-  alignItems: center;
+  justify-Content: space-between;
+  align-Items: center;
   margin: 15px;
 `;
 export const BotaoVerdeView = styled.View`
@@ -77,7 +77,7 @@ export const BlocoBotoes = styled.View`
   justify-content: flex-end;
   padding: 2%;
   height: 30%;
-  weight: 70%;
+  width: 70%;
 `;
 export const IconeImg = styled.Image`
   width: 60px;
@@ -102,7 +102,7 @@ export const BlocoDados = styled.View`
 height: 100%;
 width: 67.5%;
 flex-direction: column;
-justify-content center;
+justify-content: center;
 `;
 export const VisorContador = styled.View`
 background-color: #ffffff;

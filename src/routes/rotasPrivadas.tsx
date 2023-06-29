@@ -33,7 +33,14 @@ function RotasPrivadas() {
             <CarrinhoBotao />
           )
            }} />
-        <Stack.Screen name="Carrinho" component={Carrinho} />
+        <Stack.Screen name="Carrinho" component={Carrinho} 
+        options={{ 
+          headerStyle: {
+            backgroundColor: '#073528'
+           },
+           headerTintColor: '#fff',
+           headerTitleAlign: 'center',
+           }} />
         <Stack.Screen name="ConfirmaCompra" component={ConfirmaCompra} 
           options={{ 
             headerStyle: {
