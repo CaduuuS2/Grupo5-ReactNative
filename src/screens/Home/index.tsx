@@ -102,8 +102,8 @@ const Home = () => {
           </BlocoSlides>
 
       <View style={{flex: 1}}>
-        <FlatList 
-        data={produtoLista}
+        <FlatList
+        data={product}
         keyExtractor={(item) => item.produtoId.toString()}
         renderItem={({ item , index}) => (
           <Produto
