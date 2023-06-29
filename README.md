@@ -1,7 +1,7 @@
 # 
 <div align= "center">
   
-<![Alexandria](https://github.com/CaduuuS2/Grupo5-ReactNative/blob/main/imagens-readme/logo.png)
+![Alexandria](https://github.com/CaduuuS2/Grupo5-ReactNative/blob/main/imagens-readme/logo.png)
 
 </div>
 
