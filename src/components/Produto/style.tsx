@@ -43,7 +43,12 @@ export const IconeImg = styled.Image`
 `;
 
 export const TituloNome = styled.Text`
+<<<<<<< HEAD
+  font-size: 18px;
+  //background-color: blue;
+=======
   font-size: 20px;
+>>>>>>> 976e6afd4ef590f5cae9dc676ee5b8dc3a31cfc1
 `;
 
 export const TituloPreco = styled.Text`
