@@ -27,7 +27,7 @@ interface itemCarrinho {
     noCarrinho: boolean;
 }
 //comentario
-const Carrinho = (itemFunctionComponente: itemCarrinho[]) => {
+const Carrinho = () => {
     const [valorFrete, setValorFrete] = useState<string>() //Não formatado
     const [valorTotal, setValorTotal] = useState<string>() //Formatado
     const [itensCarrinho, setItensCarrinho] = useState<itemCarrinho[]>()
@@ -126,20 +126,19 @@ const Carrinho = (itemFunctionComponente: itemCarrinho[]) => {
 
     const excluirItemCarrinho = (itemFunction: itemCarrinho) => {
         if (itensCarrinho !== undefined) {
-            const itemFunctionParseId = itemFunction.produtoId 
+            const itemFunctionParseId = itemFunction.produtoId
             let itemFunctionObjetoValido: Produto = {} as Produto
             for (const itemForOf of produtos) {
                 if (itemForOf.id === itemFunctionParseId) {
                     itemForOf.noCarrinho = false;
-                  itemFunctionObjetoValido = itemForOf;
+                    itemFunctionObjetoValido = itemForOf;
+                    break;
                 }
-              }
-
-            setProdutos([...produtos.filter((itemFilter) => { return itemFilter.id !== itemFunctionParseId}), itemFunctionObjetoValido])
+            }
+            setProdutos([...produtos.filter((itemFilter) => { return itemFilter.id !== itemFunctionParseId }), itemFunctionObjetoValido])
             setItensCarrinho(itensCarrinho.filter((itemFilter) => {
                 return itemFilter.produtoId !== itemFunction.produtoId
             }))
-            console.log(itemFunctionObjetoValido);
         } else {
             console.log("Error: The array itensCarrinho is undefined. Please try again.")
             return
@@ -169,13 +168,43 @@ const Carrinho = (itemFunctionComponente: itemCarrinho[]) => {
             const spreaditemFunction = { ...itemFunction }
             spreaditemFunction.favorito = true
             const newItensCarrinho = itensCarrinho.map((itemMap) => itemMap.produtoId === spreaditemFunction.produtoId ? spreaditemFunction : itemMap)
+            const newProdutos = produtos.map((itemMap) => {
+                if (itemMap.id === itemFunction.produtoId) {
+                    let spreadItemMap = { ...itemMap }
+                    spreadItemMap.favorito = true
+                    return spreadItemMap
+                } else {
+                    return itemMap
+                }
+            })   
             setItensCarrinho(newItensCarrinho)
+            setProdutos(newProdutos)
         } else if (itemFunction.favorito === true && itensCarrinho !== undefined) {
             const spreaditemFunction = { ...itemFunction }
             spreaditemFunction.favorito = false
             const newItensCarrinho = itensCarrinho.map((itemMap) => itemMap.produtoId === spreaditemFunction.produtoId ? spreaditemFunction : itemMap)
+            const newProdutos = produtos.map((itemMap) => {
+                if (itemMap.id === itemFunction.produtoId) {
+                    let spreadItemMap = { ...itemMap }
+                    spreadItemMap.favorito = false
+                    return spreadItemMap
+                } else {
+                    return itemMap
+                }
+            }) 
+            setProdutos(newProdutos)
             setItensCarrinho(newItensCarrinho)
         }
+    }
+
+    const finalizarCompra = () => {
+        let arrayProdutosOnCarrinhoFalse: Produto[] = [] as Produto[]
+        for (const itemForOf of produtos) {
+            itemForOf.noCarrinho = false;
+            arrayProdutosOnCarrinhoFalse.push(itemForOf)
+        }
+        setProdutos(arrayProdutosOnCarrinhoFalse)
+        setItensCarrinho([])
     }
 
     useEffect(() => {
@@ -190,7 +219,7 @@ const Carrinho = (itemFunctionComponente: itemCarrinho[]) => {
                         <>{
                             itensCarrinho.map((itemMap) =>
                                 <ContainerProduto>
-                                    <BlocoImagem source={require('../../../assets/img/buck.png')}></BlocoImagem>
+                                    <BlocoImagem source={{ uri: itemMap.url }}></BlocoImagem>
                                     <BlocoDados>
                                         <BlocoTextos>
                                             <TituloNome>{itemMap.nome}</TituloNome>
@@ -246,7 +275,7 @@ const Carrinho = (itemFunctionComponente: itemCarrinho[]) => {
                     <BotaoVerdeView>
                         <BotaoVerde
                             textoBotao="Confirmar"
-                            onPress={() => { setItensCarrinho([]); navigation.navigate("ConfirmaCompra") }}
+                            onPress={() => { finalizarCompra(); navigation.navigate("ConfirmaCompra") }}
                         />
                     </BotaoVerdeView>
                 </Container>

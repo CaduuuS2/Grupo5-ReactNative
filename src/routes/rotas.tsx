@@ -6,7 +6,7 @@ function RotasNavigation() {
   const { id } = useAuth();
 
   return (
-    id? <RotasPrivadas /> : <RotasPublicas />
+    true ? <RotasPrivadas /> : <RotasPublicas />
   );
 }
 

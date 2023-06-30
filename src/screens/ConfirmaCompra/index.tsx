@@ -21,7 +21,7 @@ const ConfirmaCompra = () => {
         <Fundo colors={['#BD6F29', '#ffffff']}
         start={[1, 0]}
         end={[0, 1]}>
-            <Container>
+            <Container style={{flex: 1}}>
                 <View style={{height: 450, width: 400}}>
                 <Confirma 
                     source={require('../../../assets/img/CompraConcluida.png')}
