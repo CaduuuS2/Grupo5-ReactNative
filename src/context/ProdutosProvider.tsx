@@ -1,6 +1,6 @@
-import { ReactNode, createContext, useContext, useState, useEffect } from "react";
+import { ReactNode, createContext, useContext, useState } from "react"
+import { produtosInit } from "../data/produtos"
 import { Produto } from "../classes/produto";
-import { getProduto } from "../Services/produtoService";
 
 interface ProdutosState {
   produtos: Produto[];
@@ -10,35 +10,30 @@ interface ProdutosState {
 export const INITIAL_STATE: ProdutosState = {
   produtos: [],
   setProdutos: () => {},
-};
+}
 
-export const ProdutosContext = createContext<ProdutosState>(INITIAL_STATE);
+export const ProdutosContext = createContext<ProdutosState>({
+  produtos: [],
+  setProdutos: () => {},
+})
 
 interface IProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 export const ProdutosContextProvider = ({ children }: IProps) => {
-  const [produtos, setProdutos] = useState<Produto[]>([]);
+  
+  const [produtos, setProdutos] = useState(produtosInit)
+  
+  return <ProdutosContext.Provider value={{
+    produtos,
+    setProdutos
+  }}>
+    {children}
+  </ProdutosContext.Provider>
+}
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getProduto();
-        setProdutos(response);
-      } catch (error) {
-        console.error("Erro ao buscar produtos:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  return (
-    <ProdutosContext.Provider value={{ produtos, setProdutos }}>
-      {children}
-    </ProdutosContext.Provider>
-  );
-};
-
-export const useProdutosContext = (): ProdutosState => useContext(ProdutosContext);
+export const useProdutosContext = () => {
+  const context = useContext(ProdutosContext)
+  return context
+}

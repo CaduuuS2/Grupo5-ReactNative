@@ -4,7 +4,7 @@ export const Container = styled.View`
 flex: 1;
 align-items: center;
 justify-content: flex-start;
-align-self: center;
+self-align: center;
 margin-top: 10%;
 width: 100%;
 `;
@@ -21,8 +21,8 @@ export const TextoFormaPagamentoView = styled.View`
 `;
 export const FormaDePagamentoView = styled.View`
   flex-direction: row;
-  justify-Content: space-between;
-  align-Items: center;
+  justifyContent: space-between;
+  alignItems: center;
   margin: 15px;
 `;
 export const BotaoVerdeView = styled.View`
@@ -37,9 +37,11 @@ export const CepView = styled.View`
 align-items: flex-start;
 `;
 export const AvisoCarrinho = styled.View`
+min-height: 100%;
 align-items: center;
 width: 80%;
 margin: 15px;
+min-height: 100%;
 `;
 export const BotaoTipoPagamento = styled.TouchableOpacity`
 margin: 10px;
@@ -77,7 +79,7 @@ export const BlocoBotoes = styled.View`
   justify-content: flex-end;
   padding: 2%;
   height: 30%;
-  width: 70%;
+  weight: 70%;
 `;
 export const IconeImg = styled.Image`
   width: 60px;
@@ -102,7 +104,7 @@ export const BlocoDados = styled.View`
 height: 100%;
 width: 67.5%;
 flex-direction: column;
-justify-content: center;
+justify-content center;
 `;
 export const VisorContador = styled.View`
 background-color: #ffffff;

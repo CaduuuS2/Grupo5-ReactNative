@@ -1,33 +1,48 @@
+
 import { Produto } from "../classes/produto";
 
 export const listaProdutos = [
   {
-    id: 1,
-    nome: 'produto 1',
-    categoria: "Programação",
-    descricao: 'descricao 1',
+    id: 7,
+    nome: '1984',
+    categoria: "4",
+    descricao: '1984 é uma distopia clássica escrita por George Orwell. O livro retrata um mundo governado por um regime totalitário conhecido como o Partido. A história segue o protagonista Winston Smith.',
     favorito: false,
     noCarrinho: false,
-    url: 'http://',
-    preco: 12.90
-  }, {
-    id: 2,
-    nome: 'produto 2',
-    categoria: 'Ficção',
-    descricao: 'descricao 2',
+    url: 'https://m.media-amazon.com/images/I/71GmcDRfc1L.jpg',
+    preco: 39.90
+  },
+
+{
+    id: 13,
+    nome: 'O Poder do Agora',
+    categoria: "7",
+    descricao: 'Encontre inspiração para melhorar sua vida e alcançar seus objetivos. Transforme-se positivamente.',
     favorito: false,
     noCarrinho: false,
-    url: 'http://',
-    preco: 16.90
-  }, {
-    id: 3,
-    nome: 'Muiiiiito gostoso',
-    categoria: "Filosofia",
-    descricao: 'descricao 3',
+    url: 'https://m.media-amazon.com/images/I/71ef0B1lsrL.jpg',
+    preco: 29.99
+  },
+
+{
+    id: 12,
+    nome: 'Orgulho e Preconceito',
+    categoria: "5",
+    descricao: 'Entregue-se ao amor e às paixões arrebatadoras. Acompanhe o crescimento dos personagens e aqueça seu coração.',
     favorito: false,
-    noCarrinho: true,
-    url: 'http://',
-    preco: 11.90
+    noCarrinho: false,
+    url: 'https://m.media-amazon.com/images/I/51AHB+f-0DL._SX335_BO1,204,203,200_.jpg',
+    preco: 25.42
+  },
+  {
+    id: 14,
+    nome: 'A arte da imperfeição',
+    categoria: "7",
+    descricao: 'Encontre inspiração para melhorar sua vida e alcançar seus objetivos. Transforme-se positivamente.',
+    favorito: false,
+    noCarrinho: false,
+    url: 'https://m.media-amazon.com/images/I/819Zlhjs-HL.jpg',
+    preco: 35
   }
 ]
 

@@ -1,6 +1,6 @@
 
 export class Produto {
-  public produtoId: number;
+  public id: number;
   public nome: string;
   public categoria: string;
   public descricao: string;
@@ -8,20 +8,18 @@ export class Produto {
   public noCarrinho: boolean;
   public url: string;
   public preco: number;
-  public valorUnitario: number;
-  public url: string;
 
   constructor(
-    produtoId: number,
+    id: number,
     nome: string,
     categoria: string,
     descricao: string,
     favorito: boolean,
-    preco: number,
-    valorUnitario: number,
+    noCarrinho: boolean,
     url: string,
+    preco: number
     ) {
-    this.produtoId = produtoId;
+    this.id = id;
     this.nome = nome;
     this.categoria = categoria;
     this.descricao = descricao;
@@ -29,7 +27,5 @@ export class Produto {
     this.noCarrinho = noCarrinho;
     this.url = url;
     this.preco = preco;
-    this.valorUnitario = valorUnitario;
-    this.url = url;
   }
 }
